@@ -17,28 +17,29 @@ export interface HeartbeatType {
 }
 
 export const HEARTBEAT_TYPES: HeartbeatType[] = [
-  // 1. LIFE (Categoría Madre)
+  // 1. LIFE (CATEGORÍA MADRE - TÍTULO: LIFE)
   {
     id: "life",
-    title: "Life",
-    subtitle: "El origen de la desconexión. Reservas y Resorts.",
-    valueProp: "Elige tu nivel de inmersión: Santuario salvaje o Refugio confortable.",
+    title: "Life", 
+    subtitle: "El origen de la desconexión.",
+    valueProp: "Dos caminos para volver a la naturaleza: Santuarios Salvajes o Resorts Conscientes.",
     status: 'active',
     icon: Trees,
     image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80",
-    description: "Life es nuestra división dedicada al descanso profundo y la regeneración. Hemos creado dos caminos para volver a la naturaleza: 'Life Reserve' para la inmersión total y 'Life Resort' para la hospitalidad consciente.",
+    description: "Life es nuestra división dedicada al descanso profundo y la regeneración biológica. Hemos creado dos experiencias distintas para recuperar tu ritmo natural, dependiendo de tu necesidad de confort o de crudeza.",
     moments: [
       { title: "Silencio Absoluto", image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80", category: "Esencia" },
       { title: "Arquitectura Invisible", image: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?auto=format&fit=crop&q=80", category: "Diseño" },
       { title: "Tiempo Lento", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80", category: "Ritmo" }
     ],
     locations: ["pyrenees", "bcn-beach"],
-    relatedTypes: ["life-reserve-item", "life-resort-item"], // Enlaces a los sub-tipos
+    relatedTypes: ["life-reserve", "life-resort"], // IDs de los hijos
     ctaContext: 'places'
   },
-  // 1.1 Life Reserve (Sub-tipo)
+  
+  // 1.1 Life Reserve (Sub-tipo OCULTO en grid principal)
   {
-    id: "life-reserve-item",
+    id: "life-reserve",
     title: "Life Reserve",
     subtitle: "Santuarios naturales protegidos.",
     valueProp: "Inmersión total en lo salvaje. Sin wifi, solo biología.",
@@ -52,13 +53,14 @@ export const HEARTBEAT_TYPES: HeartbeatType[] = [
       { title: "Cabañas Aisladas", image: "https://images.unsplash.com/photo-1449156493391-d2cfa28e468b?auto=format&fit=crop&q=80", category: "Estancia" }
     ],
     locations: ["pyrenees"],
-    relatedTypes: ["life-resort-item", "km0"],
+    relatedTypes: ["life-resort", "km0"],
     ctaContext: 'places',
-    hidden: true
+    hidden: true // IMPORTANTE: Oculto en /ecosistema
   },
-  // 1.2 Life Resort (Sub-tipo)
+  
+  // 1.2 Life Resort (Sub-tipo OCULTO en grid principal)
   {
-    id: "life-resort-item",
+    id: "life-resort",
     title: "Life Resort",
     subtitle: "Hospitalidad regenerativa de alto confort.",
     valueProp: "Lujo sostenible donde el descanso es una ciencia.",
@@ -72,12 +74,12 @@ export const HEARTBEAT_TYPES: HeartbeatType[] = [
       { title: "Infinity Pool", image: "https://images.unsplash.com/photo-1572331165267-854da2b00cc6?auto=format&fit=crop&q=80", category: "Agua" }
     ],
     locations: ["bcn-beach", "tulum-eco (2026)"],
-    relatedTypes: ["life-reserve-item", "multisport"],
+    relatedTypes: ["life-reserve", "multisport"],
     ctaContext: 'places',
-    hidden: true
+    hidden: true // IMPORTANTE: Oculto en /ecosistema
   },
   
-  // Resto de tipos...
+  // RESTO DE TIPOS...
   {
     id: "multisport",
     title: "Centros Multideportivos",

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Search, ChevronDown, Calendar, ArrowUpRight } from 'lucide-react';
 import { HOME_CONTENT } from '../../data/home_content';
+import { HEARTBEAT_TYPES } from '../../data/heartbeat_types_data'; // Importar tipos para el filtro
 import FadeIn from '../../components/animations/FadeIn';
 import BreathingCard from '../../components/animations/BreathingCard';
 import PulseSeparator from '../../components/animations/PulseSeparator';
-import HeartbeatIcon from '../../components/animations/HeartbeatIcon';
+import SoulSignal from '../../components/animations/SoulSignal';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ProtoHome() {
@@ -19,6 +20,9 @@ export default function ProtoHome() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Filtrar tipos principales para el buscador (excluir sub-tipos ocultos)
+  const filterTypes = HEARTBEAT_TYPES.filter(t => !t.hidden && t.status === 'active');
+
   return (
     <div className="bg-white">
       
@@ -26,20 +30,28 @@ export default function ProtoHome() {
       <AnimatePresence>
         {showIntro && (
           <motion.div 
-            className="fixed inset-0 z-[100] bg-black flex items-center justify-center"
+            className="fixed inset-0 z-[100] bg-black flex items-center justify-center overflow-hidden"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 1, ease: "easeInOut" } }}
           >
-            <div className="flex flex-col items-center">
-              {/* Usamos el degradado de marca en la intro */}
-              <HeartbeatIcon size={180} variant="intro" useGradient={true} />
+            {/* FONDO GIF */}
+            <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
+              <img 
+                src="https://lh3.googleusercontent.com/d/1T__Xnb9QClCSq3PUT7nc62Kohrn4G8nS"
+                alt="Loading Background"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/50" />
+            </div>
+
+            <div className="relative z-10 flex flex-col items-center">
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="text-white/50 text-xs font-bold uppercase tracking-[0.5em] mt-12"
+                className="text-white/70 text-xs font-bold uppercase tracking-[0.5em] backdrop-blur-sm px-4 py-2 rounded-full border border-white/10"
               >
-                Iniciando Sistema...
+                Sincronizando latido...
               </motion.p>
             </div>
           </motion.div>
@@ -59,11 +71,10 @@ export default function ProtoHome() {
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
           
-          {/* LATIDO DE MARCA (HERO) - Grande y Libre */}
+          {/* SEÑAL DEL ALMA */}
           <FadeIn delay={showIntro ? 2.6 : 0.1} yOffset={0}>
-             <div className="mb-12">
-               {/* Tamaño aumentado y con degradado de marca */}
-               <HeartbeatIcon size={100} variant="hero" useGradient={true} />
+             <div className="mb-8">
+               <SoulSignal />
              </div>
           </FadeIn>
 
@@ -157,6 +168,8 @@ export default function ProtoHome() {
                   <option>Cualquier Deporte</option>
                   <option>Boxing</option>
                   <option>Yoga</option>
+                  <option>Running</option>
+                  <option>Escalada</option>
                 </select>
                 <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none opacity-50" size={24} />
               </div>
@@ -165,14 +178,17 @@ export default function ProtoHome() {
                   <option>Cualquier Ubicación</option>
                   <option>Madrid</option>
                   <option>Barcelona</option>
+                  <option>Huesca</option>
+                  <option>Valencia</option>
                 </select>
                 <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none opacity-50" size={24} />
               </div>
               <div className="flex-1 relative group">
                 <select className="w-full bg-neutral-900 text-white h-20 pl-8 pr-12 rounded-2xl appearance-none cursor-pointer focus:ring-2 focus:ring-white outline-none font-medium text-xl transition-colors hover:bg-neutral-800">
-                  <option>Cualquier Vibe</option>
-                  <option>Adrenaline</option>
-                  <option>Regeneration</option>
+                  <option>Cualquier Heartbeat</option>
+                  {filterTypes.map(t => (
+                    <option key={t.id} value={t.title}>{t.title}</option>
+                  ))}
                 </select>
                 <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none opacity-50" size={24} />
               </div>
@@ -187,7 +203,7 @@ export default function ProtoHome() {
       {/* 5) TIPOS DE HEARTBEAT - Ritmo Visual */}
       <section className="py-24 md:py-40 px-6 max-w-[1400px] mx-auto">
         <FadeIn>
-          <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-20 md:mb-28 text-center">EL UNIVERSO HEARTBEAT</h2>
+          <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-20 md:mb-28 text-center">EL ECOSISTEMA HEARTBEAT</h2> {/* CAMBIO */}
         </FadeIn>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {HOME_CONTENT.heartbeatTypes.map((type, idx) => (
@@ -311,7 +327,7 @@ export default function ProtoHome() {
         </div>
       </section>
 
-      {/* 9) MANIFIESTO - Pausa Dramática con Imagen (NUEVO) */}
+      {/* 9) MANIFIESTO - Pausa Dramática con Imagen */}
       <section className="relative py-60 md:py-80 px-6 text-center overflow-hidden">
         {/* Imagen de Fondo con Espacio Negativo */}
         <div className="absolute inset-0">

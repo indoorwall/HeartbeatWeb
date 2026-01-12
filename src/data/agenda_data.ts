@@ -6,7 +6,7 @@ export interface Event {
   locationName: string; // Nombre del centro
   city: string;
   sport: string;
-  heartbeatType: string;
+  heartbeatType: string; // Actualizado a los nuevos tipos
   description: string;
   image: string;
   spotsLeft?: number;
@@ -22,7 +22,7 @@ export const AGENDA_DATA: Event[] = [
     locationName: "Madrid Tech Hub",
     city: "Madrid",
     sport: "Running",
-    heartbeatType: "Urban",
+    heartbeatType: "Heartbeat Urban",
     description: "10K a ritmo social descubriendo la arquitectura lumínica de la ciudad. Post-run smoothie incluido.",
     image: "https://images.unsplash.com/photo-1552674605-46f5383a67d4?auto=format&fit=crop&q=80",
     spotsLeft: 12
@@ -35,7 +35,7 @@ export const AGENDA_DATA: Event[] = [
     locationName: "Pyrenees Base",
     city: "Huesca",
     sport: "Running",
-    heartbeatType: "Nature",
+    heartbeatType: "Life",
     description: "Masterclass con campeones locales para perder el miedo a descender rápido y seguro.",
     image: "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&q=80",
     spotsLeft: 5
@@ -49,7 +49,7 @@ export const AGENDA_DATA: Event[] = [
     locationName: "Pyrenees Base",
     city: "Huesca",
     sport: "Escalada",
-    heartbeatType: "Nature",
+    heartbeatType: "Life",
     description: "Tu primera experiencia en pared real. Material y guías de alta montaña incluidos.",
     image: "https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&q=80",
     spotsLeft: 4
@@ -62,7 +62,7 @@ export const AGENDA_DATA: Event[] = [
     locationName: "Barcelona Coast",
     city: "Barcelona",
     sport: "Escalada",
-    heartbeatType: "Adrenaline",
+    heartbeatType: "Centros Multideportivos",
     description: "Escalada sin cuerda sobre el mar. Solo para niveles intermedios/avanzados.",
     image: "https://images.unsplash.com/photo-1564769662533-4f00a87b4056?auto=format&fit=crop&q=80"
   },
@@ -75,7 +75,7 @@ export const AGENDA_DATA: Event[] = [
     locationName: "Barcelona Coast",
     city: "Barcelona",
     sport: "Surf",
-    heartbeatType: "Nature",
+    heartbeatType: "Life",
     description: "Aprovecha las primeras luces. Sesión guiada seguida de desayuno orgánico en la arena.",
     image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&q=80",
     spotsLeft: 8
@@ -89,7 +89,7 @@ export const AGENDA_DATA: Event[] = [
     locationName: "Madrid Tech Hub",
     city: "Madrid",
     sport: "Boxing",
-    heartbeatType: "Urban",
+    heartbeatType: "Heartbeat Urban",
     description: "Aprende a esquivar antes de golpear. Taller intensivo de movimiento de pies y cintura.",
     image: "https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?auto=format&fit=crop&q=80",
     spotsLeft: 10
@@ -103,7 +103,7 @@ export const AGENDA_DATA: Event[] = [
     locationName: "Madrid Tech Hub",
     city: "Madrid",
     sport: "Tech",
-    heartbeatType: "Future",
+    heartbeatType: "Tecnología",
     description: "Deja de mirar datos y empieza a entenderlos. Cómo usar la Variabilidad de Frecuencia Cardíaca.",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80",
     spotsLeft: 20
@@ -117,7 +117,7 @@ export const AGENDA_DATA: Event[] = [
     locationName: "Barcelona Coast",
     city: "Barcelona",
     sport: "Comunidad",
-    heartbeatType: "Community",
+    heartbeatType: "Centros Multideportivos",
     description: "Deporte con impacto directo. Guantes y bolsas biodegradables facilitados por Heartbeat.",
     image: "https://images.unsplash.com/photo-1618477461853-5f8dd3791985?auto=format&fit=crop&q=80",
     spotsLeft: 50

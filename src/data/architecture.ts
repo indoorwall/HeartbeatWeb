@@ -28,23 +28,18 @@ export const SITE_STRUCTURE = [
     ]
   },
   {
-    id: "universo",
-    label: "Universo",
-    path: "/universo",
-    description: "Catálogo de formatos y conceptos (El 'Ecosistema').",
+    id: "ecosistema", 
+    label: "Ecosistema", // CONFIRMADO: Ecosistema
+    path: "/ecosistema",
+    description: "Catálogo de formatos y conceptos.",
     icon: Globe,
     children: [
-      { label: "Life Reserves", description: "Santuarios naturales" },
+      { label: "Life", description: "Santuarios y Resorts" }, 
       { label: "Urban Hubs", description: "Regeneración de ciudad" },
       { label: "Hoteles", description: "Hospitalidad sostenible" },
       { label: "Tech", description: "Apps y Wearables" }
     ]
   },
-  // Reemplazamos "Heartbeats" (que es conceptual) por "Agenda" en el menú principal para más utilidad,
-  // o mantenemos Heartbeats si es crítico. El usuario pidió "Sección /agenda".
-  // Mantendré Heartbeats como concepto de búsqueda en Home, pero en el menú pondré Agenda para acción.
-  // AJUSTE: El usuario pidió "Define el menú final con máximo 6 secciones".
-  // Voy a incluir Agenda aquí.
   {
     id: "agenda",
     label: "Agenda",
@@ -57,14 +52,15 @@ export const SITE_STRUCTURE = [
     ]
   },
   {
-    id: "journal",
-    label: "Journal",
-    path: "/historias", // Updated path
-    description: "El pulso de la marca. Historias vivas.",
+    id: "magazine",
+    label: "Magazine",
+    path: "/magazine",
+    description: "Periodismo lento. Cultura, cuerpo y planeta.",
     icon: BookOpen,
     children: [
-      { label: "Naturaleza", description: "Ciencia y entorno" },
-      { label: "Innovación", description: "Tech & Human" }
+      { label: "Reportajes", description: "Investigación profunda" },
+      { label: "Cultura", description: "Arte y pensamiento" },
+      { label: "Salud", description: "Ciencia y bienestar" }
     ]
   }
 ];
@@ -93,7 +89,7 @@ export const USER_FLOWS = [
       },
       { 
         label: "Página de Ubicación", 
-        detail: "Confirma que el centro le encaja (horarios/vibe).",
+        detail: "Confirma que el centro le encaja (horarios/tipo de Heartbeat).",
         screen: "Página: Urban Hub Madrid"
       },
       { 
@@ -137,18 +133,18 @@ export const USER_FLOWS = [
   },
   {
     id: "flow-c",
-    title: "C) Heartbeat (Vibe) → Descubrimiento",
+    title: "C) Heartbeat → Descubrimiento",
     description: "El usuario busca una sensación o propósito, no una actividad concreta.",
     steps: [
       { 
-        label: "Menú: Heartbeats", 
-        detail: "Elige 'Regeneration' (Necesito desconectar/sanar).",
+        label: "Menú: Ecosistema", 
+        detail: "Elige 'Life' (Necesito desconectar/sanar).",
         screen: "Selector de Mood"
       },
       { 
         label: "Página de Descubrimiento", 
         detail: "Mix de contenido: Yoga suave, Spa, Retiros de silencio.",
-        screen: "Landing: Regeneration Vibe"
+        screen: "Landing: Life"
       },
       { 
         label: "Inspiración → Acción", 
@@ -169,7 +165,6 @@ export const USER_FLOWS = [
   }
 ];
 
-// MOCK DATA PARA PROTOTIPO (Actualizado ligeramente)
 export const MOCK_SPORTS = [
   { id: "boxing", name: "Boxing", image: "🥊", category: "High Energy" },
   { id: "yoga", name: "Yoga", image: "🧘", category: "Flow" },

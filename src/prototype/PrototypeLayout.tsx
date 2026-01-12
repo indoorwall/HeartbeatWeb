@@ -4,6 +4,7 @@ import { SITE_STRUCTURE } from '../data/architecture';
 import { Menu, X, ArrowLeft, DoorOpen } from 'lucide-react';
 import { cn } from '../lib/utils';
 import ProtoFooter from './components/ProtoFooter';
+import SoulGuide from '../components/SoulGuide'; // IMPORTAR SOUL GUIDE
 
 export default function PrototypeLayout() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -66,7 +67,7 @@ export default function PrototypeLayout() {
           {/* CTA & Mobile Toggle */}
           <div className="flex items-center gap-4">
             <button className="hidden md:block bg-black text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-neutral-800 transition-colors shadow-lg hover:shadow-xl">
-              Sincronizar
+              Reservar
             </button>
             <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X /> : <Menu />}
@@ -100,6 +101,10 @@ export default function PrototypeLayout() {
 
       {/* Footer Completo */}
       <ProtoFooter />
+
+      {/* --- SOUL GUIDE AI (Navegación Inteligente) --- */}
+      <SoulGuide />
+      
     </div>
   );
 }

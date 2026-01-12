@@ -7,8 +7,9 @@ import { cn } from '../../lib/utils';
 import FadeIn from '../../components/animations/FadeIn';
 import BreathingCard from '../../components/animations/BreathingCard';
 
-// --- VISTA LISTADO: /universo ---
-export function ProtoUniverseList() {
+// --- VISTA LISTADO: /ecosistema ---
+// Renombrado de ProtoUniverseList a ProtoEcosystemList
+export function ProtoEcosystemList() {
   // Filtramos los tipos ocultos (sub-tipos como Life Reserve/Resort)
   const visibleTypes = HEARTBEAT_TYPES.filter(t => !t.hidden);
 
@@ -19,7 +20,7 @@ export function ProtoUniverseList() {
         <div className="max-w-5xl mx-auto text-center">
           <FadeIn>
             <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-8">
-              EL UNIVERSO HEARTBEAT
+              EL ECOSISTEMA HEARTBEAT
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
@@ -36,7 +37,7 @@ export function ProtoUniverseList() {
           {visibleTypes.map((type, idx) => (
             <BreathingCard 
               key={type.id} 
-              to={type.status === 'active' ? `/prototype/universo/${type.id}` : '#'}
+              to={type.status === 'active' ? `/prototype/ecosistema/${type.id}` : '#'}
               delay={idx * 0.1}
               className={cn(
                 "group relative overflow-hidden rounded-[2rem] border transition-all duration-500 flex flex-col h-[500px]",
@@ -99,8 +100,9 @@ export function ProtoUniverseList() {
   );
 }
 
-// --- VISTA DETALLE: /universo/:id ---
-export function ProtoUniverseDetail() {
+// --- VISTA DETALLE: /ecosistema/:id ---
+// Renombrado de ProtoUniverseDetail a ProtoEcosystemDetail
+export function ProtoEcosystemDetail() {
   const { id } = useParams();
   const type = HEARTBEAT_TYPES.find(t => t.id === id);
 
@@ -110,6 +112,9 @@ export function ProtoUniverseDetail() {
   const matchingLocations = LOCATIONS_DATA.filter(l => 
     type.locations.includes(l.id) || type.locations.includes(l.city.toLowerCase())
   );
+
+  // ¿Es la página de "Life"?
+  const isLifePage = type.id === 'life';
 
   return (
     <div className="bg-white">
@@ -151,8 +156,40 @@ export function ProtoUniverseDetail() {
           </FadeIn>
         </section>
 
-        {/* 3) CÓMO SE VIVE (Momentos) */}
-        {type.moments.length > 0 && (
+        {/* --- SECCIÓN ESPECIAL PARA LIFE: SELECTOR DE SUBCATEGORÍAS (PRIORITARIO) --- */}
+        {isLifePage && (
+          <section>
+            <FadeIn>
+              <h2 className="text-4xl md:text-6xl font-black mb-16 tracking-tighter text-center">ELIGE TU CAMINO</h2>
+            </FadeIn>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              {type.relatedTypes.map((relId, idx) => {
+                const relType = HEARTBEAT_TYPES.find(t => t.id === relId);
+                if (!relType) return null;
+                return (
+                  <BreathingCard key={relId} to={`/prototype/ecosistema/${relId}`} delay={idx * 0.1}>
+                    <div className="group relative h-[600px] rounded-[2rem] overflow-hidden border border-neutral-200 hover:border-black transition-all">
+                      <img src={relType.image} alt={relType.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
+                      <div className="absolute inset-0 p-12 flex flex-col justify-end text-white">
+                        <span className="text-xs font-bold uppercase tracking-widest mb-4 opacity-80 border border-white/30 px-3 py-1 rounded-full w-fit">Experiencia Life</span>
+                        <h3 className="text-5xl font-black uppercase tracking-tighter mb-4">{relType.title}</h3>
+                        <p className="text-xl opacity-90 mb-8 leading-relaxed max-w-md">{relType.subtitle}</p>
+                        <span className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest bg-white text-black px-8 py-4 rounded-full w-fit hover:bg-neutral-200 transition-colors">
+                          Explorar {relType.title} <ArrowRight size={16} />
+                        </span>
+                      </div>
+                    </div>
+                  </BreathingCard>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* 3) CÓMO SE VIVE (Momentos) - Solo si NO es Life (Life ya tiene los cards grandes) */}
+        {!isLifePage && type.moments.length > 0 && (
           <section>
             <FadeIn>
               <h2 className="text-4xl md:text-6xl font-black mb-16 tracking-tighter text-center">LA EXPERIENCIA</h2>
@@ -175,8 +212,8 @@ export function ProtoUniverseDetail() {
           </section>
         )}
 
-        {/* 4) DÓNDE EXISTE (Ubicaciones) */}
-        {!type.hidden && (
+        {/* 4) DÓNDE EXISTE (Ubicaciones) - Solo si NO es Life */}
+        {!type.hidden && !isLifePage && (
           <FadeIn>
             <section className="bg-neutral-50 rounded-[3rem] p-12 md:p-20 border border-neutral-100">
               <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
@@ -224,36 +261,36 @@ export function ProtoUniverseDetail() {
           </FadeIn>
         )}
 
-        {/* 5) CONEXIONES (Aquí es donde se ven los sub-tipos Life Reserve / Life Resort) */}
-        <section>
-          <FadeIn>
-            <h2 className="text-3xl font-bold mb-12 text-center">
-              {type.id === 'life' ? 'Elige tu experiencia Life' : 'Conecta con otros formatos'}
-            </h2>
-          </FadeIn>
-          <div className="flex flex-wrap justify-center gap-6">
-            {type.relatedTypes.map((relId, idx) => {
-              const relType = HEARTBEAT_TYPES.find(t => t.id === relId);
-              if (!relType) return null;
-              return (
-                <FadeIn key={relId} delay={idx * 0.1}>
-                  <Link 
-                    to={`/prototype/universo/${relId}`}
-                    className="flex items-center gap-4 px-8 py-4 rounded-full border border-neutral-200 hover:border-black hover:bg-neutral-50 transition-all"
-                  >
-                    <relType.icon size={20} />
-                    <span className="font-bold text-sm uppercase tracking-wider">{relType.title}</span>
-                  </Link>
-                </FadeIn>
-              );
-            })}
-          </div>
-        </section>
+        {/* 5) CONEXIONES (Para páginas que NO son Life) */}
+        {!isLifePage && (
+          <section>
+            <FadeIn>
+              <h2 className="text-3xl font-bold mb-12 text-center">Conecta con otros formatos</h2>
+            </FadeIn>
+            <div className="flex flex-wrap justify-center gap-6">
+              {type.relatedTypes.map((relId, idx) => {
+                const relType = HEARTBEAT_TYPES.find(t => t.id === relId);
+                if (!relType) return null;
+                return (
+                  <FadeIn key={relId} delay={idx * 0.1}>
+                    <Link 
+                      to={`/prototype/ecosistema/${relId}`}
+                      className="flex items-center gap-4 px-8 py-4 rounded-full border border-neutral-200 hover:border-black hover:bg-neutral-50 transition-all"
+                    >
+                      <relType.icon size={20} />
+                      <span className="font-bold text-sm uppercase tracking-wider">{relType.title}</span>
+                    </Link>
+                  </FadeIn>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* 6) CTA FINAL */}
         <section className="text-center pt-16">
           <FadeIn>
-            {type.ctaContext === 'places' && (
+            {type.ctaContext === 'places' && !isLifePage && (
               <Link 
                 to="/prototype/lugares" 
                 className="inline-block bg-black text-white px-12 py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-neutral-800 transition-colors shadow-xl"

@@ -11,7 +11,6 @@ const CONCEPTS = [
     id: 'sports',
     title: 'Movimiento',
     subtitle: 'La oración del cuerpo.',
-    // ACTUALIZACIÓN: Imagen personalizada del usuario desde Google Drive (Enlace directo)
     image: 'https://lh3.googleusercontent.com/d/1m9kZBnTxSmivAwQSsQp_tCnRWdjUYvHU', 
     content: {
       heroImage: 'https://lh3.googleusercontent.com/d/1m9kZBnTxSmivAwQSsQp_tCnRWdjUYvHU',
@@ -28,7 +27,7 @@ const CONCEPTS = [
         text: 'Nuestros espacios leen tu energía. Sensores biométricos integrados en el entorno ajustan la iluminación y el sonido para llevarte al estado de flujo. No entrenas solo; el espacio entrena contigo.'
       },
       cta: {
-        text: 'Sincronizar movimiento',
+        text: 'Ver más',
         url: '/prototype/deportes'
       }
     }
@@ -37,7 +36,6 @@ const CONCEPTS = [
     id: 'health',
     title: 'Biología',
     subtitle: 'Datos que sanan.',
-    // Imagen personalizada del usuario desde Google Drive (Enlace directo)
     image: 'https://lh3.googleusercontent.com/d/1GnsbRLV08eCl_CdPTh1j7sE4J1JtVwhG',
     content: {
       heroImage: 'https://lh3.googleusercontent.com/d/1GnsbRLV08eCl_CdPTh1j7sE4J1JtVwhG',
@@ -55,7 +53,7 @@ const CONCEPTS = [
       },
       cta: {
         text: 'Explorar bio-tech',
-        url: '/prototype/universo/tech'
+        url: '/prototype/ecosistema/tech' // CAMBIO
       }
     }
   },
@@ -102,7 +100,7 @@ const CONCEPTS = [
       },
       cta: {
         text: 'Ver templos urbanos',
-        url: '/prototype/universo/urban'
+        url: '/prototype/ecosistema/urban' // CAMBIO
       }
     }
   }
@@ -123,6 +121,18 @@ export default function ProtoIntro() {
   return (
     <div className="bg-neutral-50 min-h-screen font-sans text-neutral-900 relative selection:bg-black selection:text-white">
       
+      {/* BACKGROUND (GIF) - DIRECTO DESDE DRIVE (CDN) */}
+      <div className="absolute top-0 left-0 w-full h-[90vh] overflow-hidden z-0 pointer-events-none">
+        <img 
+          src="https://lh3.googleusercontent.com/d/1T__Xnb9QClCSq3PUT7nc62Kohrn4G8nS"
+          alt="Heartbeat Intro Background"
+          className="w-full h-full object-cover opacity-40" // Eliminado grayscale y saturate-0, ajustada opacidad
+        />
+        
+        {/* Degradado para fundirse suavemente con el fondo blanco */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neutral-50/10 to-neutral-50" />
+      </div>
+
       {/* BOTÓN SALTAR (Fixed) */}
       <Link 
         to="/prototype"
@@ -131,7 +141,7 @@ export default function ProtoIntro() {
         Saltar Intro <SkipForward size={14} />
       </Link>
 
-      <div className="max-w-[1600px] mx-auto px-6 py-20 md:py-32 flex flex-col min-h-screen">
+      <div className="max-w-[1600px] mx-auto px-6 py-20 md:py-32 flex flex-col min-h-screen relative z-10">
         
         {/* NIVEL 1: INTRODUCCIÓN (ALMA TECNOLÓGICA) */}
         <header className="mb-20 md:mb-32 max-w-4xl">
@@ -142,7 +152,7 @@ export default function ProtoIntro() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <h2 className="text-xl md:text-2xl font-bold text-neutral-400 uppercase tracking-widest mb-6">
-              Tu alma tecnológica.
+              HEARTBEAT.
             </h2>
             <p className="text-xl md:text-3xl text-neutral-600 font-medium leading-relaxed max-w-3xl">
               No somos una red de gimnasios. Somos una interfaz de consciencia.
@@ -161,7 +171,7 @@ export default function ProtoIntro() {
               layoutId={`card-container-${card.id}`}
               key={card.id}
               onClick={() => setSelectedId(card.id)}
-              className="group relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-shadow"
+              className="group relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-shadow bg-white"
             >
               {/* Background Image */}
               <motion.img
@@ -169,10 +179,8 @@ export default function ProtoIntro() {
                 src={card.image}
                 alt={card.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                // Fallback por si el enlace falla, usamos una imagen segura
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  // Evitamos bucle infinito si la imagen de fallback también falla
                   if (!target.src.includes('unsplash')) {
                      target.src = "https://images.unsplash.com/photo-1515023115689-589c33041697?auto=format&fit=crop&q=80";
                   }

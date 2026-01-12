@@ -1,8 +1,9 @@
 import { Activity, Wind, Zap, Mountain, Waves, Box, Gauge, Trophy } from "lucide-react";
 
-// Tipos para TypeScript
+// Tipos para TypeScript actualizados con los nuevos Tipos de Heartbeat
 export type Environment = 'Indoor' | 'Outdoor' | 'Hybrid';
-export type HeartbeatType = 'Adrenaline' | 'Regeneration' | 'Community' | 'Future';
+// Nuevos tipos basados en el Universo Heartbeat
+export type HeartbeatType = 'Life' | 'Centros Multideportivos' | 'Heartbeat Urban' | 'Hoteles Sostenibles' | 'Restaurantes KM0' | 'Tecnología';
 
 export interface Sport {
   id: string;
@@ -146,13 +147,13 @@ export const SPORTS_DATA: Sport[] = [
   }
 ];
 
-// --- DATA UBICACIONES (Extendida) ---
+// --- DATA UBICACIONES (Actualizada con nuevos HeartbeatTypes) ---
 export const LOCATIONS_DATA: Location[] = [
   { 
     id: "madrid-hub", 
     name: "Madrid Tech Hub", 
     city: "Madrid", 
-    heartbeatType: "Future", 
+    heartbeatType: "Heartbeat Urban", // Actualizado
     sports: ["boxing", "simulators", "crossfit"],
     image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80",
     tags: ["Indoor", "Tech", "Coworking"],
@@ -186,7 +187,7 @@ export const LOCATIONS_DATA: Location[] = [
     id: "bcn-beach", 
     name: "Barcelona Coast", 
     city: "Barcelona", 
-    heartbeatType: "Adrenaline", 
+    heartbeatType: "Life", // Actualizado (Life Resort/Reserve)
     sports: ["surf", "skate", "running", "yoga"],
     image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&q=80",
     tags: ["Outdoor", "Playa", "Solar"],
@@ -220,7 +221,7 @@ export const LOCATIONS_DATA: Location[] = [
     id: "pyrenees", 
     name: "Pyrenees Base", 
     city: "Huesca", 
-    heartbeatType: "Regeneration", 
+    heartbeatType: "Life", // Actualizado (Life Reserve)
     sports: ["climbing", "running", "yoga"],
     image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80",
     tags: ["Nature", "Retiro", "Silencio"],
@@ -254,7 +255,7 @@ export const LOCATIONS_DATA: Location[] = [
     id: "valencia-urban", 
     name: "Valencia Green", 
     city: "Valencia", 
-    heartbeatType: "Community", 
+    heartbeatType: "Centros Multideportivos", // Actualizado
     sports: ["running", "crossfit", "skate"],
     image: "https://images.unsplash.com/photo-1552674605-46f5383a67d4?auto=format&fit=crop&q=80",
     tags: ["Urban", "Park", "Open"],

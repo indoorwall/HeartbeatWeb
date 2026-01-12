@@ -23,7 +23,7 @@ export const BRAND_COPY = {
       text: "Huella consciente."
     },
     journal: { 
-      label: "Journal",
+      label: "Revista",
       text: "Códigos de vida."
     },
     experiencias: { 
@@ -32,7 +32,7 @@ export const BRAND_COPY = {
     }
   },
   ctas: [
-    { text: "Sincronizar", context: "Primario Global (Conversión)" },
+    { text: "Reservar", context: "Primario Global (Conversión)" },
     { text: "Unirse al alma", context: "Primario Alternativo (Membership)" },
     { text: "Ver templos", context: "Secundario (Navegación)" },
     { text: "Explorar disciplinas", context: "Secundario (Descubrimiento)" },

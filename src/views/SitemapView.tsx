@@ -102,7 +102,7 @@ export default function SitemapView() {
           {/* CTA Global */}
           <div className="flex gap-4">
              <div className="bg-black text-white px-8 py-3 rounded-full font-bold text-sm shadow-lg hover:scale-105 transition-transform cursor-pointer">
-               CTA: SINCRONIZAR
+               CTA: Reservar
              </div>
           </div>
         </div>

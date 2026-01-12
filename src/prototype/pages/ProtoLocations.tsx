@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { LOCATIONS_DATA, SPORTS_DATA } from '../../data/sports_data';
+import { HEARTBEAT_TYPES } from '../../data/heartbeat_types_data'; // Importar tipos
 import { ArrowRight, MapPin, Filter, Check, Calendar, Clock, Map, Heart, Info, ArrowUpRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import FadeIn from '../../components/animations/FadeIn';
@@ -14,7 +15,9 @@ export function ProtoLocationsList() {
 
   const cities = ['Todas', ...Array.from(new Set(LOCATIONS_DATA.map(l => l.city)))];
   const sports = ['Todos', ...SPORTS_DATA.map(s => s.name)];
-  const types = ['Todos', 'Adrenaline', 'Regeneration', 'Community', 'Future'];
+  
+  // Tipos de Heartbeat (ecosistema)
+  const types = ['Todos', ...HEARTBEAT_TYPES.filter(t => !t.hidden && t.status === 'active').map(t => t.title)];
 
   const filteredLocations = useMemo(() => {
     return LOCATIONS_DATA.filter(loc => {
@@ -70,7 +73,7 @@ export function ProtoLocationsList() {
               value={filterType} onChange={(e) => setFilterType(e.target.value)}
               className="bg-neutral-100 border-none rounded-xl px-6 py-3 text-sm font-medium focus:ring-2 focus:ring-black cursor-pointer hover:bg-neutral-200 transition-colors"
             >
-              {types.map(t => <option key={t} value={t}>{t === 'Todos' ? 'Cualquier Vibe' : t}</option>)}
+              {types.map(t => <option key={t} value={t}>{t === 'Todos' ? 'Cualquier Heartbeat' : t}</option>)}
             </select>
           </div>
           
@@ -101,10 +104,10 @@ export function ProtoLocationsList() {
                     <div className="absolute bottom-6 left-6">
                        <span className={cn(
                          "px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest border shadow-sm",
-                         loc.heartbeatType === 'Adrenaline' && "bg-blue-50 text-blue-900 border-blue-200",
-                         loc.heartbeatType === 'Regeneration' && "bg-green-50 text-green-900 border-green-200",
-                         loc.heartbeatType === 'Future' && "bg-purple-50 text-purple-900 border-purple-200",
-                         loc.heartbeatType === 'Community' && "bg-yellow-50 text-yellow-900 border-yellow-200",
+                         loc.heartbeatType === 'Heartbeat Urban' && "bg-blue-50 text-blue-900 border-blue-200",
+                         loc.heartbeatType === 'Life' && "bg-green-50 text-green-900 border-green-200",
+                         loc.heartbeatType === 'Tecnología' && "bg-purple-50 text-purple-900 border-purple-200",
+                         loc.heartbeatType === 'Centros Multideportivos' && "bg-yellow-50 text-yellow-900 border-yellow-200",
                        )}>
                          {loc.heartbeatType}
                        </span>

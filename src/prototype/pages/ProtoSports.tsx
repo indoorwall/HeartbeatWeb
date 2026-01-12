@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { SPORTS_DATA, LOCATIONS_DATA, Sport } from '../../data/sports_data';
+import { HEARTBEAT_TYPES } from '../../data/heartbeat_types_data'; // Importar tipos
 import { ArrowRight, MapPin, Filter, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
@@ -15,7 +16,10 @@ export function ProtoSportsList() {
 
   // Obtener ciudades únicas
   const cities = ['Todas', ...Array.from(new Set(LOCATIONS_DATA.map(l => l.city)))];
-  const types = ['Todos', 'Adrenaline', 'Regeneration', 'Community', 'Future'];
+  
+  // Obtener Tipos de Heartbeat (heartbeat)
+  const types = ['Todos', ...HEARTBEAT_TYPES.filter(t => !t.hidden && t.status === 'active').map(t => t.title)];
+  
   const envs = ['Todos', 'Indoor', 'Outdoor', 'Hybrid'];
 
   // Lógica de filtrado avanzada
@@ -75,13 +79,13 @@ export function ProtoSportsList() {
               {cities.map(c => <option key={c} value={c}>{c === 'Todas' ? 'Cualquier Ciudad' : c}</option>)}
             </select>
 
-            {/* Selector Heartbeat */}
+            {/* Selector Heartbeat (ecosistema) */}
             <select 
               value={filterType} 
               onChange={(e) => setFilterType(e.target.value)}
               className="bg-neutral-100 border-none rounded-xl px-6 py-3 text-sm font-medium focus:ring-2 focus:ring-black cursor-pointer hover:bg-neutral-200 transition-colors"
             >
-              {types.map(t => <option key={t} value={t}>{t === 'Todos' ? 'Cualquier Vibe' : t}</option>)}
+              {types.map(t => <option key={t} value={t}>{t === 'Todos' ? 'Cualquier Heartbeat' : t}</option>)}
             </select>
 
             {/* Selector Indoor/Outdoor */}

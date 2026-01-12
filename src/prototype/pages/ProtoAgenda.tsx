@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { AGENDA_DATA } from '../../data/agenda_data';
+import { HEARTBEAT_TYPES } from '../../data/heartbeat_types_data'; // Importar tipos
 import { Calendar, MapPin, Filter, ArrowRight } from 'lucide-react';
 import FadeIn from '../../components/animations/FadeIn';
 
@@ -11,7 +12,9 @@ export default function ProtoAgenda() {
   // Extract unique values
   const cities = ['Todas', ...Array.from(new Set(AGENDA_DATA.map(e => e.city)))];
   const sports = ['Todos', ...Array.from(new Set(AGENDA_DATA.map(e => e.sport)))];
-  const types = ['Todos', ...Array.from(new Set(AGENDA_DATA.map(e => e.heartbeatType)))];
+  
+  // Tipos de Heartbeat (Ecosistema)
+  const types = ['Todos', ...HEARTBEAT_TYPES.filter(t => !t.hidden && t.status === 'active').map(t => t.title)];
 
   const filteredEvents = useMemo(() => {
     return AGENDA_DATA.filter(event => {
@@ -73,7 +76,7 @@ export default function ProtoAgenda() {
               value={filterType} onChange={(e) => setFilterType(e.target.value)}
               className="bg-neutral-100 border-none rounded-xl px-6 py-3 text-sm font-medium focus:ring-2 focus:ring-black cursor-pointer hover:bg-neutral-200 transition-colors"
             >
-              {types.map(t => <option key={t} value={t}>{t === 'Todos' ? 'Cualquier Vibe' : t}</option>)}
+              {types.map(t => <option key={t} value={t}>{t === 'Todos' ? 'Cualquier Heartbeat' : t}</option>)}
             </select>
           </div>
         </div>

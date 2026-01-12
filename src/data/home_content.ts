@@ -5,7 +5,7 @@ export const HOME_CONTENT = {
   hero: {
     h1: "HEARTBEAT.",
     subclaim: "Tu alma tecnológica. Una interfaz viva para elevar tu consciencia a través del movimiento.",
-    ctaPrimary: "Sincronizar",
+    ctaPrimary: "Reservar",
     ctaSecondary: "Explorar el alma"
   },
   quickAccess: [
@@ -20,7 +20,7 @@ export const HOME_CONTENT = {
     },
     {
       id: "location",
-      title: "Elige tu templo",
+      title: "Elige tu ubicación",
       phrase: "Espacios para reconectar.",
       cta: "Ver Lugares",
       icon: MapPin,
@@ -31,9 +31,9 @@ export const HOME_CONTENT = {
       id: "heartbeat",
       title: "Elige tu frecuencia",
       phrase: "¿Qué necesita tu energía hoy?",
-      cta: "Descubrir Vibe",
+      cta: "Descubrir Ecosistema", // CONFIRMADO: Ecosistema
       icon: Heart,
-      path: "/prototype/heartbeats",
+      path: "/prototype/ecosistema", // CONFIRMADO: Ruta correcta
       color: "bg-purple-50 text-purple-900 border-purple-100"
     }
   ],
@@ -47,15 +47,14 @@ export const HOME_CONTENT = {
     { name: "Skate", phrase: "Creatividad urbana.", id: "skate" }
   ],
   heartbeatTypes: [
-    // CAMBIO: Life Reserve -> Life
-    { title: "Life", desc: "Santuarios y Resorts regenerativos.", icon: Trees },
-    { title: "Centros Multideportivos", desc: "Reactores de energía.", icon: Activity },
-    { title: "Hoteles Sostenibles", desc: "Descanso del alma.", icon: Building },
-    { title: "Heartbeat Urban", desc: "Renacimiento de la ciudad.", icon: MapPin },
-    { title: "Restaurantes KM0", desc: "Alimento consciente.", icon: Coffee },
-    { title: "Tecnología", desc: "Bio-datos y espíritu.", icon: Cpu },
-    { title: "Ropa (WIP)", desc: "Segunda piel.", icon: ShoppingBag, disabled: true },
-    { title: "Máquinas (WIP)", desc: "Energía cinética.", icon: Dumbbell, disabled: true }
+    { title: "Life", desc: "Santuarios y Resorts regenerativos.", icon: Trees, id: "life" },
+    { title: "Centros Multideportivos", desc: "Reactores de energía.", icon: Activity, id: "multisport" },
+    { title: "Hoteles Sostenibles", desc: "Descanso del alma.", icon: Building, id: "hotels" },
+    { title: "Heartbeat Urban", desc: "Renacimiento de la ciudad.", icon: MapPin, id: "urban" },
+    { title: "Restaurantes KM0", desc: "Alimento consciente.", icon: Coffee, id: "km0" },
+    { title: "Tecnología", desc: "Bio-datos y espíritu.", icon: Cpu, id: "tech" },
+    { title: "Ropa (WIP)", desc: "Segunda piel.", icon: ShoppingBag, disabled: true, id: "clothes" },
+    { title: "Máquinas (WIP)", desc: "Energía cinética.", icon: Dumbbell, disabled: true, id: "machines" }
   ],
   featuredLocations: [
     {
@@ -109,6 +108,6 @@ export const HOME_CONTENT = {
   newsletter: {
     title: "Conecta tu alma.",
     subtitle: "Recibe códigos, rituales y novedades.",
-    cta: "Sincronizar"
+    cta: "Reservar"
   }
 };

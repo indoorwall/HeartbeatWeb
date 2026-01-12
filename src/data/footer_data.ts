@@ -8,26 +8,25 @@ export const FOOTER_CONTENT = {
         { label: "Disciplinas", path: "/prototype/deportes" },
         { label: "Templos", path: "/prototype/lugares" },
         { label: "Rituales", path: "/prototype/agenda" },
-        { label: "Universo", path: "/prototype/universo" }
+        { label: "Ecosistema", path: "/prototype/ecosistema" } // CONFIRMADO: Ecosistema
       ]
     },
     {
       title: "Formatos",
       links: [
-        // CAMBIO: Life Reserve -> Life
-        { label: "Life", path: "/prototype/universo/life" },
-        { label: "Urban Hubs", path: "/prototype/universo/urban" },
-        { label: "Hoteles", path: "/prototype/universo/hotels" },
-        { label: "Restaurantes KM0", path: "/prototype/universo/km0" }
+        { label: "Life", path: "/prototype/ecosistema/life" },
+        { label: "Urban Hubs", path: "/prototype/ecosistema/urban" },
+        { label: "Hoteles", path: "/prototype/ecosistema/hotels" },
+        { label: "Restaurantes KM0", path: "/prototype/ecosistema/km0" }
       ]
     },
     {
-      title: "Journal",
+      title: "Magazine",
       links: [
-        { label: "Últimos Códigos", path: "/prototype/historias" },
-        { label: "Naturaleza", path: "/prototype/historias?cat=Naturaleza" },
-        { label: "Innovación", path: "/prototype/historias?cat=Innovación" },
-        { label: "Comunidad", path: "/prototype/historias?cat=Comunidad" }
+        { label: "Portada", path: "/prototype/magazine" },
+        { label: "Cuerpo", path: "/prototype/magazine/category/cuerpo" },
+        { label: "Salud", path: "/prototype/magazine/category/salud" },
+        { label: "Planeta", path: "/prototype/magazine/category/planeta" }
       ]
     },
     {
@@ -43,8 +42,8 @@ export const FOOTER_CONTENT = {
     title: "¿Buscas tu frecuencia?",
     links: [
       { label: "Encuentra tu disciplina", path: "/prototype/deportes", icon: ArrowRight },
-      { label: "Busca un templo cerca", path: "/prototype/lugares", icon: ArrowRight },
-      { label: "Descubre tu alma", path: "/prototype/universo", icon: ArrowRight }
+      { label: "Busca ubicaciones", path: "/prototype/lugares", icon: ArrowRight },
+      { label: "Descubre tu alma", path: "/prototype/ecosistema", icon: ArrowRight } // CONFIRMADO: Ecosistema
     ]
   },
   social: [
@@ -66,12 +65,12 @@ export const FOOTER_CONTENT = {
 
 export const CTA_SYSTEM = {
   primary: {
-    text: "Sincronizar",
+    text: "Reservar",
     alt: "Unirse ahora",
     style: "bg-black text-white hover:bg-neutral-800"
   },
   secondary: {
-    places: "Ver templos",
+    places: "Buscar ubicaciones",
     sports: "Explorar disciplinas",
     style: "bg-white text-black border border-black hover:bg-neutral-50"
   },
