@@ -26,6 +26,8 @@ import ProtoAlojamientoHome from './prototype/pages/ProtoAlojamientoHome';
 import ProtoHeartbeatLife from './prototype/pages/ProtoHeartbeatLife';
 import ProtoLifeReserve from './prototype/pages/ProtoLifeReserve';
 import ProtoLifeResort from './prototype/pages/ProtoLifeResort';
+import ProtoAlimentacion from './prototype/pages/ProtoAlimentacion';
+import ProtoAlimentacionDetail from './prototype/pages/ProtoAlimentacionDetail';
 
 // MAGAZINE IMPORTS
 import MagazineLayout from './prototype/magazine/MagazineLayout';
@@ -86,6 +88,9 @@ function App() {
           <Route path="heartbeat-life" element={<ProtoHeartbeatLife />} />
           <Route path="heartbeat-life/reserve" element={<ProtoLifeReserve />} />
           <Route path="heartbeat-life/resort" element={<ProtoLifeResort />} />
+
+          <Route path="alimentacion" element={<ProtoAlimentacion />} />
+          <Route path="alimentacion/:slug" element={<ProtoAlimentacionDetail />} />
 
           <Route path="deportes" element={<ProtoSportsList />} />
           <Route path="deportes/:id" element={<ProtoSportPage />} />
