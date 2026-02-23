@@ -11,6 +11,7 @@ import ProtoHome from './prototype/pages/ProtoHome';
 import ProtoIntro from './prototype/pages/ProtoIntro';
 import { ProtoSportsList, ProtoSportDetail } from './prototype/pages/ProtoSports.tsx';
 import ProtoSportPage from './prototype/pages/ProtoSportPage.tsx';
+import ProtoSportDetail from './prototype/pages/ProtoSportDetail';
 import { ProtoLocationsList, ProtoLocationDetail } from './prototype/pages/ProtoLocations.tsx';
 import { ProtoEcosystemList, ProtoEcosystemDetail } from './prototype/pages/ProtoHeartbeatTypes.tsx'; // RENAMED
 import ProtoStories from './prototype/pages/ProtoStories.tsx';
@@ -93,7 +94,7 @@ function App() {
           <Route path="alimentacion/:slug" element={<ProtoAlimentacionDetail />} />
 
           <Route path="deportes" element={<ProtoSportsList />} />
-          <Route path="deportes/:id" element={<ProtoSportPage />} />
+          <Route path="deportes/:slug" element={<ProtoSportDetail />} />
 
           <Route path="lugares" element={<ProtoLocationsList />} />
           <Route path="lugares/:id" element={<ProtoLocationDetail />} />
