@@ -40,8 +40,8 @@ export const HOME_CONTENT = {
   sportsGrid: [
     { name: "Boxing", phrase: "Enfoque absoluto.", id: "boxing" },
     { name: "Running", phrase: "Meditación activa.", id: "running" },
-    { name: "Escalada", phrase: "Ascenso interior.", id: "climbing" },
-    { name: "Simuladores", phrase: "Fusión hombre-máquina.", id: "simulators" },
+    { name: "Escalada", phrase: "Ascenso interior.", id: "escalada" },
+    { name: "Simuladores", phrase: "Fusión hombre-máquina.", id: "simuladores" },
     { name: "Surf", phrase: "Fluir con el todo.", id: "surf" },
     { name: "Crossfit", phrase: "Potencia vital.", id: "crossfit" },
     { name: "Skate", phrase: "Creatividad urbana.", id: "skate" }
