@@ -15,6 +15,8 @@ import { ProtoLocationsList, ProtoLocationDetail } from './prototype/pages/Proto
 import { ProtoEcosystemList, ProtoEcosystemDetail } from './prototype/pages/ProtoHeartbeatTypes.tsx'; // RENAMED
 import ProtoStories from './prototype/pages/ProtoStories.tsx';
 import ProtoAgenda from './prototype/pages/ProtoAgenda.tsx';
+import ProtoCentros from './prototype/pages/ProtoCentros';
+import ProtoCentroDetail from './prototype/pages/ProtoCentroDetail';
 
 // MAGAZINE IMPORTS
 import MagazineLayout from './prototype/magazine/MagazineLayout';
@@ -60,19 +62,23 @@ function App() {
         {/* Main App Routes */}
         <Route path="/prototype" element={<PrototypeLayout />}>
           <Route index element={<ProtoHome />} />
-          
+
+          <Route path="centros" element={<ProtoCentros />} />
+          <Route path="centros/:slug" element={<ProtoCentroDetail />} />
+
           <Route path="deportes" element={<ProtoSportsList />} />
           <Route path="deportes/:id" element={<ProtoSportPage />} />
-          
+
           <Route path="lugares" element={<ProtoLocationsList />} />
           <Route path="lugares/:id" element={<ProtoLocationDetail />} />
-          
+
           {/* CAMBIO: Ruta actualizada a Ecosistema y componentes renombrados */}
           <Route path="ecosistema" element={<ProtoEcosystemList />} />
           <Route path="ecosistema/:id" element={<ProtoEcosystemDetail />} />
 
           <Route path="historias" element={<ProtoStories />} />
           <Route path="agenda" element={<ProtoAgenda />} />
+          <Route path="eventos" element={<ProtoAgenda />} />
 
           <Route path="*" element={<div className="p-10">Página en construcción (Wireframe)</div>} />
         </Route>
