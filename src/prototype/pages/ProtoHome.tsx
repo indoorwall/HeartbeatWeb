@@ -90,12 +90,12 @@ export default function ProtoHome() {
           </FadeIn>
           <FadeIn delay={showIntro ? 3.2 : 0.6}>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="bg-gradient-to-r from-brand-start to-brand-end text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-brand-start/20">
+              <Link to="/prototype/reservar" className="bg-gradient-to-r from-brand-start to-brand-end text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-brand-start/20 text-center">
                 {HOME_CONTENT.hero.ctaPrimary}
-              </button>
-              <button className="bg-transparent border border-white text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-colors">
+              </Link>
+              <Link to="/prototype/ecosistema" className="bg-transparent border border-white text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-colors text-center">
                 {HOME_CONTENT.hero.ctaSecondary}
-              </button>
+              </Link>
             </div>
           </FadeIn>
         </div>
@@ -366,16 +366,16 @@ export default function ProtoHome() {
           </FadeIn>
           
           <FadeIn delay={0.4}>
-            <form className="flex flex-col sm:flex-row gap-4" onSubmit={(e) => e.preventDefault()}>
-              <input 
-                type="email" 
-                placeholder="Tu email aquí..." 
+            <div className="flex flex-col sm:flex-row gap-4">
+              <input
+                type="email"
+                placeholder="Tu email aquí..."
                 className="flex-1 bg-white/10 border border-white/20 rounded-xl px-8 py-5 text-white placeholder-neutral-400 focus:ring-2 focus:ring-white outline-none text-lg backdrop-blur-sm"
               />
-              <button className="bg-white text-black px-10 py-5 rounded-xl font-bold uppercase tracking-widest hover:bg-neutral-200 transition-colors shrink-0">
+              <Link to="/prototype/reservar" className="bg-white text-black px-10 py-5 rounded-xl font-bold uppercase tracking-widest hover:bg-neutral-200 transition-colors shrink-0 text-center">
                 {HOME_CONTENT.newsletter.cta}
-              </button>
-            </form>
+              </Link>
+            </div>
           </FadeIn>
           <FadeIn delay={0.6}>
             <p className="text-xs text-neutral-500 mt-8">

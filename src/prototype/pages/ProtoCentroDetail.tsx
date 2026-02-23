@@ -115,9 +115,9 @@ export default function ProtoCentroDetail() {
                 </div>
               </div>
 
-              <button className="w-full bg-black text-white py-3 rounded-full font-bold mt-6 hover:bg-neutral-800 transition-all">
+              <Link to="/prototype/reservar" className="w-full bg-black text-white py-3 rounded-full font-bold mt-6 hover:bg-neutral-800 transition-all block text-center">
                 Reservar ahora
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -210,9 +210,9 @@ export default function ProtoCentroDetail() {
 
       {/* CTA STICKY */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-neutral-200 p-4 shadow-lg md:hidden z-50">
-        <button className="w-full bg-black text-white py-3 rounded-full font-bold">
+        <Link to="/prototype/reservar" className="w-full bg-black text-white py-3 rounded-full font-bold block text-center">
           Reservar ahora
-        </button>
+        </Link>
       </div>
     </div>
   );

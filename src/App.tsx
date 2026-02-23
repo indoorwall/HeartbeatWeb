@@ -29,6 +29,7 @@ import ProtoLifeReserve from './prototype/pages/ProtoLifeReserve';
 import ProtoLifeResort from './prototype/pages/ProtoLifeResort';
 import ProtoAlimentacion from './prototype/pages/ProtoAlimentacion';
 import ProtoAlimentacionDetail from './prototype/pages/ProtoAlimentacionDetail';
+import ProtoReservar from './prototype/pages/ProtoReservar';
 
 // MAGAZINE IMPORTS
 import MagazineLayout from './prototype/magazine/MagazineLayout';
@@ -106,6 +107,7 @@ function App() {
           <Route path="historias" element={<ProtoStories />} />
           <Route path="agenda" element={<ProtoAgenda />} />
           <Route path="eventos" element={<ProtoAgenda />} />
+          <Route path="reservar" element={<ProtoReservar />} />
 
           <Route path="*" element={<div className="p-10">Página en construcción (Wireframe)</div>} />
         </Route>

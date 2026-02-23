@@ -66,9 +66,9 @@ export default function PrototypeLayout() {
 
           {/* CTA & Mobile Toggle */}
           <div className="flex items-center gap-4">
-            <button className="hidden md:block bg-black text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-neutral-800 transition-colors shadow-lg hover:shadow-xl">
+            <Link to="/prototype/reservar" className="hidden md:block bg-black text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-neutral-800 transition-colors shadow-lg hover:shadow-xl">
               Reservar
-            </button>
+            </Link>
             <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X /> : <Menu />}
             </button>

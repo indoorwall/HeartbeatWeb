@@ -194,9 +194,9 @@ export function ProtoLocationDetail() {
               <a href="#sports" className="bg-white text-black px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-neutral-200 transition-colors">
                 Ver deportes
               </a>
-              <button className="bg-transparent border border-white text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-colors">
+              <Link to="/prototype/reservar" className="bg-transparent border border-white text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-colors">
                 Reservar ahora
-              </button>
+              </Link>
             </div>
           </FadeIn>
         </div>
@@ -413,9 +413,9 @@ export function ProtoLocationDetail() {
           </FadeIn>
           <FadeIn delay={0.4}>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="bg-white text-black px-12 py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-neutral-200 transition-colors">
+              <Link to="/prototype/reservar" className="bg-white text-black px-12 py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-neutral-200 transition-colors">
                 Reservar Sesión
-              </button>
+              </Link>
               <button className="bg-transparent border border-white text-white px-12 py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-colors">
                 Ver Membership
               </button>

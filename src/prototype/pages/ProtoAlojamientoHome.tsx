@@ -205,9 +205,9 @@ export default function ProtoAlojamientoHome() {
                     <button className="w-full bg-black text-white py-3 rounded-full font-bold hover:bg-neutral-800 transition-all">
                       Ver casa
                     </button>
-                    <button className="w-full bg-neutral-100 text-black py-3 rounded-full font-bold hover:bg-neutral-200 transition-all">
+                    <Link to="/prototype/reservar" className="w-full bg-neutral-100 text-black py-3 rounded-full font-bold hover:bg-neutral-200 transition-all block text-center">
                       {home.rentalType === 'Recurrente' ? 'Ver disponibilidad' : 'Reservar'}
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
