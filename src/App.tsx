@@ -19,6 +19,10 @@ import ProtoCentros from './prototype/pages/ProtoCentros';
 import ProtoCentroDetail from './prototype/pages/ProtoCentroDetail';
 import ProtoInvertir from './prototype/pages/ProtoInvertir';
 import ProtoInvertirDetail from './prototype/pages/ProtoInvertirDetail';
+import ProtoAlojamiento from './prototype/pages/ProtoAlojamiento';
+import ProtoAlojamientoHoteles from './prototype/pages/ProtoAlojamientoHoteles';
+import ProtoAlojamientoSocial from './prototype/pages/ProtoAlojamientoSocial';
+import ProtoAlojamientoHome from './prototype/pages/ProtoAlojamientoHome';
 
 // MAGAZINE IMPORTS
 import MagazineLayout from './prototype/magazine/MagazineLayout';
@@ -70,6 +74,11 @@ function App() {
 
           <Route path="invertir" element={<ProtoInvertir />} />
           <Route path="invertir/:slug" element={<ProtoInvertirDetail />} />
+
+          <Route path="alojamiento" element={<ProtoAlojamiento />} />
+          <Route path="alojamiento/hoteles" element={<ProtoAlojamientoHoteles />} />
+          <Route path="alojamiento/social" element={<ProtoAlojamientoSocial />} />
+          <Route path="alojamiento/home" element={<ProtoAlojamientoHome />} />
 
           <Route path="deportes" element={<ProtoSportsList />} />
           <Route path="deportes/:id" element={<ProtoSportPage />} />
