@@ -80,9 +80,12 @@ export default function ProtoAlojamientoHoteles() {
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <button className="w-full bg-black text-white py-3 rounded-full font-bold hover:bg-neutral-800 transition-all">
+                    <Link
+                      to={`/prototype/alojamiento/hoteles/${hotel.slug}`}
+                      className="w-full bg-black text-white py-3 rounded-full font-bold hover:bg-neutral-800 transition-all block text-center"
+                    >
                       Ver hotel
-                    </button>
+                    </Link>
                     <Link to="/prototype/reservar" className="w-full bg-neutral-100 text-black py-3 rounded-full font-bold hover:bg-neutral-200 transition-all block text-center">
                       Reservar
                     </Link>

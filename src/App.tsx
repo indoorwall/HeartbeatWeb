@@ -24,6 +24,7 @@ import ProtoAlojamiento from './prototype/pages/ProtoAlojamiento';
 import ProtoAlojamientoHoteles from './prototype/pages/ProtoAlojamientoHoteles';
 import ProtoAlojamientoSocial from './prototype/pages/ProtoAlojamientoSocial';
 import ProtoAlojamientoHome from './prototype/pages/ProtoAlojamientoHome';
+import ProtoHotelDetail from './prototype/pages/ProtoHotelDetail';
 import ProtoHeartbeatLife from './prototype/pages/ProtoHeartbeatLife';
 import ProtoLifeReserve from './prototype/pages/ProtoLifeReserve';
 import ProtoLifeResort from './prototype/pages/ProtoLifeResort';
@@ -84,6 +85,7 @@ function App() {
 
           <Route path="alojamiento" element={<ProtoAlojamiento />} />
           <Route path="alojamiento/hoteles" element={<ProtoAlojamientoHoteles />} />
+          <Route path="alojamiento/hoteles/:slug" element={<ProtoHotelDetail />} />
           <Route path="alojamiento/social" element={<ProtoAlojamientoSocial />} />
           <Route path="alojamiento/home" element={<ProtoAlojamientoHome />} />
 
