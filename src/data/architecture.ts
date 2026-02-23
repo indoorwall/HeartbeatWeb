@@ -3,65 +3,67 @@ import { Activity, MapPin, Zap, Leaf, Heart, BookOpen, Globe, Calendar } from "l
 // 1. DEFINICIÓN DEL MENÚ Y SITEMAP (NIVEL 1 Y 2)
 export const SITE_STRUCTURE = [
   {
-    id: "deportes",
-    label: "Deportes",
-    path: "/deportes",
-    description: "Entrada por Actividad (El 'Qué').",
+    id: "home",
+    label: "Inicio",
+    path: "/",
+    description: "Página de inicio",
+    icon: Heart
+  },
+  {
+    id: "centros",
+    label: "Centros Multideportivos",
+    path: "/centros",
+    description: "Centros deportivos activos y próximos proyectos",
     icon: Activity,
-    children: [
-      { label: "High Energy", description: "Boxing, Crossfit, HIIT" },
-      { label: "Flow & Balance", description: "Yoga, Pilates, Movimiento" },
-      { label: "Outdoor", description: "Surf, Escalada, Running" },
-      { label: "Tech Sports", description: "Simuladores, e-Sports físicos" }
-    ]
+    children: []
   },
   {
-    id: "lugares",
-    label: "Lugares",
-    path: "/lugares",
-    description: "Entrada por Ubicación (El 'Dónde').",
+    id: "alojamiento",
+    label: "Alojamiento",
+    path: "/alojamiento",
+    description: "Hoteles sostenibles, Heartbeat House y Heartbeat Social",
     icon: MapPin,
-    children: [
-      { label: "Urban Hubs", description: "Centros tecnológicos en ciudad" },
-      { label: "Nature Bases", description: "Retiros y regeneración" },
-      { label: "Partner Spots", description: "Espacios certificados" }
-    ]
+    children: []
   },
   {
-    id: "ecosistema", 
-    label: "Ecosistema", // CONFIRMADO: Ecosistema
-    path: "/ecosistema",
-    description: "Catálogo de formatos y conceptos.",
-    icon: Globe,
-    children: [
-      { label: "Life", description: "Santuarios y Resorts" }, 
-      { label: "Urban Hubs", description: "Regeneración de ciudad" },
-      { label: "Hoteles", description: "Hospitalidad sostenible" },
-      { label: "Tech", description: "Apps y Wearables" }
-    ]
+    id: "invertir",
+    label: "Invertir",
+    path: "/invertir",
+    description: "Proyectos de inversión en desarrollo sostenible",
+    icon: Zap,
+    children: []
   },
   {
-    id: "agenda",
-    label: "Agenda",
-    path: "/agenda",
-    description: "Eventos, clases especiales y viajes.",
+    id: "alimentacion",
+    label: "Alimentación",
+    path: "/alimentacion",
+    description: "Restaurantes KM0 y supermercados sostenibles",
+    icon: Leaf,
+    children: []
+  },
+  {
+    id: "eventos",
+    label: "Eventos",
+    path: "/eventos",
+    description: "Calendario de eventos deportivos y culturales",
     icon: Calendar,
-    children: [
-      { label: "Eventos", description: "Actividades puntuales" },
-      { label: "Retiros", description: "Viajes de inmersión" }
-    ]
+    children: []
+  },
+  {
+    id: "life",
+    label: "Heartbeat Life",
+    path: "/life",
+    description: "Filosofía, visión y regeneración consciente",
+    icon: Heart,
+    children: []
   },
   {
     id: "magazine",
     label: "Magazine",
     path: "/magazine",
-    description: "Periodismo lento. Cultura, cuerpo y planeta.",
+    description: "Periodismo lento. Cultura, cuerpo y planeta",
     icon: BookOpen,
-    children: [
-      { label: "Reportajes", description: "Investigación profunda" },
-      { label: "Cultura", description: "Arte y pensamiento" },
-      { label: "Salud", description: "Ciencia y bienestar" }
-    ]
+    children: []
   }
 ];
 
