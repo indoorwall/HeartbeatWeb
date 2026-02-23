@@ -52,10 +52,23 @@ export const SITE_STRUCTURE = [
   {
     id: "life",
     label: "Heartbeat Life",
-    path: "/life",
-    description: "Filosofía, visión y regeneración consciente",
+    path: "/heartbeat-life",
+    description: "Territorios diseñados para vivir, moverte y regenerar",
     icon: Heart,
-    children: []
+    children: [
+      {
+        id: "life-reserve",
+        label: "Life Reserve",
+        path: "/heartbeat-life/reserve",
+        description: "Desarrollos en entornos naturales con regeneración territorial"
+      },
+      {
+        id: "life-resort",
+        label: "Life Resort",
+        path: "/heartbeat-life/resort",
+        description: "Experiencia completa de deporte, alojamiento y comunidad"
+      }
+    ]
   },
   {
     id: "magazine",
