@@ -9,7 +9,7 @@ import CopySystemView from './views/CopySystemView';
 import PrototypeLayout from './prototype/PrototypeLayout';
 import ProtoHome from './prototype/pages/ProtoHome';
 import ProtoIntro from './prototype/pages/ProtoIntro';
-import { ProtoSportsList, ProtoSportDetail } from './prototype/pages/ProtoSports.tsx';
+import { ProtoSportsList } from './prototype/pages/ProtoSports.tsx';
 import ProtoSportPage from './prototype/pages/ProtoSportPage.tsx';
 import ProtoSportDetail from './prototype/pages/ProtoSportDetail';
 import { ProtoLocationsList, ProtoLocationDetail } from './prototype/pages/ProtoLocations.tsx';
