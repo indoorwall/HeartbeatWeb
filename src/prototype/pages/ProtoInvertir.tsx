@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, TrendingUp, Filter } from 'lucide-react';
+import { MapPin, TrendingUp, Filter, ArrowRight, Building2, Home, Hotel, Warehouse } from 'lucide-react';
 import {
   INVESTMENT_PROJECTS,
   filterProjects,
@@ -8,6 +8,7 @@ import {
   type ProjectType,
   type ProjectStatus,
 } from '../../data/invertir_data';
+import FadeIn from '../../components/animations/FadeIn';
 
 export default function ProtoInvertir() {
   const [selectedType, setSelectedType] = React.useState<ProjectType | ''>('');
@@ -25,232 +26,285 @@ export default function ProtoInvertir() {
   const getStatusColor = (status: ProjectStatus) => {
     switch (status) {
       case 'En estudio':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-500 text-white';
       case 'En búsqueda de inversión':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-amber-500 text-white';
       case 'En ejecución':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-500 text-white';
       case 'Cerrado':
-        return 'bg-neutral-100 text-neutral-600';
+        return 'bg-neutral-400 text-white';
       default:
-        return 'bg-neutral-100 text-neutral-600';
+        return 'bg-neutral-400 text-white';
+    }
+  };
+
+  const getTypeColor = (type: ProjectType) => {
+    switch (type) {
+      case 'Life':
+        return 'bg-emerald-50 text-emerald-900 border-emerald-200';
+      case 'Centros Multideportivos':
+        return 'bg-orange-50 text-orange-900 border-orange-200';
+      case 'Hoteles':
+        return 'bg-sky-50 text-sky-900 border-sky-200';
+      case 'Urban':
+        return 'bg-stone-50 text-stone-900 border-stone-200';
+      case 'House':
+        return 'bg-rose-50 text-rose-900 border-rose-200';
+      default:
+        return 'bg-neutral-50 text-neutral-900 border-neutral-200';
     }
   };
 
   return (
     <div className="min-h-screen bg-white">
-      {/* HERO */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[75vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-black text-white">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center opacity-50"
           style={{
             backgroundImage:
               'url(https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=1600)',
           }}
-        >
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
 
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">
-            Invertir en Heartbeat
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 font-light">
-            Proyectos reales. Desarrollo estructurado. Transparencia.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#proyectos"
-              className="bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-neutral-100 transition-all shadow-lg"
-            >
-              Ver proyectos
-            </a>
-            <a
-              href="#contacto"
-              className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all"
-            >
-              Solicitar información
-            </a>
-          </div>
+        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+          <FadeIn>
+            <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">
+              Invertir en Heartbeat
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="text-xl md:text-2xl mb-12 font-light text-neutral-200 max-w-3xl mx-auto">
+              Proyectos reales de regeneración. Desarrollo estructurado por fases.
+              Transparencia total.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#proyectos"
+                className="bg-white text-black px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-neutral-200 transition-all"
+              >
+                Ver proyectos
+              </a>
+              <a
+                href="#contacto"
+                className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all"
+              >
+                Solicitar información
+              </a>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* CÓMO FUNCIONA */}
-      <section className="py-16 bg-neutral-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-black mb-12 text-center">Cómo funciona</h2>
+      <section className="py-20 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <FadeIn>
+            <h2 className="text-3xl md:text-4xl font-black mb-16 text-center">
+              Cómo funciona
+            </h2>
+          </FadeIn>
+
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                1
+            <FadeIn delay={0.1}>
+              <div className="text-center">
+                <div className="w-20 h-20 bg-black text-white rounded-2xl flex items-center justify-center text-3xl font-black mx-auto mb-6">
+                  1
+                </div>
+                <h3 className="font-black mb-3 text-lg">Desarrollo por fases</h3>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  Cada proyecto avanza en etapas claras y medibles con hitos
+                  verificables.
+                </p>
               </div>
-              <h3 className="font-bold mb-2">Desarrollo por fases</h3>
-              <p className="text-sm text-neutral-600">
-                Cada proyecto avanza en etapas claras y medibles.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                2
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <div className="text-center">
+                <div className="w-20 h-20 bg-black text-white rounded-2xl flex items-center justify-center text-3xl font-black mx-auto mb-6">
+                  2
+                </div>
+                <h3 className="font-black mb-3 text-lg">Regeneración real</h3>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  Priorizamos rehabilitar espacios existentes y recuperar estructuras.
+                </p>
               </div>
-              <h3 className="font-bold mb-2">Regeneración y reutilización</h3>
-              <p className="text-sm text-neutral-600">
-                Priorizamos rehabilitar espacios existentes cuando es posible.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                3
+            </FadeIn>
+            <FadeIn delay={0.3}>
+              <div className="text-center">
+                <div className="w-20 h-20 bg-black text-white rounded-2xl flex items-center justify-center text-3xl font-black mx-auto mb-6">
+                  3
+                </div>
+                <h3 className="font-black mb-3 text-lg">Ingresos diversificados</h3>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  Modelos con múltiples fuentes de ingreso y sostenibilidad financiera.
+                </p>
               </div>
-              <h3 className="font-bold mb-2">Ingresos diversificados</h3>
-              <p className="text-sm text-neutral-600">
-                Modelos de negocio con múltiples fuentes de ingreso.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                4
+            </FadeIn>
+            <FadeIn delay={0.4}>
+              <div className="text-center">
+                <div className="w-20 h-20 bg-black text-white rounded-2xl flex items-center justify-center text-3xl font-black mx-auto mb-6">
+                  4
+                </div>
+                <h3 className="font-black mb-3 text-lg">Impacto medible</h3>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  Seguimiento de empleo, m² rehabilitados y comunidad generada.
+                </p>
               </div>
-              <h3 className="font-bold mb-2">Impacto medible</h3>
-              <p className="text-sm text-neutral-600">
-                Seguimiento de empleo, rehabilitación y comunidad.
-              </p>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* FILTROS */}
-      <section id="proyectos" className="py-16 px-4 bg-white">
+      <section id="proyectos" className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <Filter size={24} />
-            <h2 className="text-2xl font-bold">Filtrar proyectos</h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-4 mb-12">
-            <div>
-              <label className="block text-sm font-medium mb-2 text-neutral-700">
-                Tipo de Heartbeat
-              </label>
-              <select
-                value={selectedType}
-                onChange={(e) => setSelectedType(e.target.value as ProjectType | '')}
-                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-              >
-                <option value="">Todos los tipos</option>
-                <option value="Life">Life</option>
-                <option value="Centros Multideportivos">Centros Multideportivos</option>
-                <option value="Hoteles">Hoteles</option>
-                <option value="Urban">Urban</option>
-                <option value="House">House</option>
-              </select>
+          <FadeIn>
+            <div className="flex items-center gap-3 mb-8">
+              <Filter size={28} />
+              <h2 className="text-3xl font-black">Filtrar proyectos</h2>
             </div>
+          </FadeIn>
 
-            <div>
-              <label className="block text-sm font-medium mb-2 text-neutral-700">
-                Estado del proyecto
-              </label>
-              <select
-                value={selectedStatus}
-                onChange={(e) => setSelectedStatus(e.target.value as ProjectStatus | '')}
-                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-              >
-                <option value="">Todos los estados</option>
-                <option value="En estudio">En estudio</option>
-                <option value="En búsqueda de inversión">En búsqueda de inversión</option>
-                <option value="En ejecución">En ejecución</option>
-                <option value="Cerrado">Cerrado</option>
-              </select>
+          <FadeIn delay={0.1}>
+            <div className="grid md:grid-cols-3 gap-4 mb-12 bg-neutral-50 p-6 rounded-2xl border border-neutral-200">
+              <div>
+                <label className="block text-sm font-bold mb-2 text-neutral-900">
+                  Tipo
+                </label>
+                <select
+                  value={selectedType}
+                  onChange={(e) => setSelectedType(e.target.value as ProjectType | '')}
+                  className="w-full px-4 py-3 border-2 border-neutral-300 rounded-xl focus:outline-none focus:border-black transition-colors font-medium bg-white"
+                >
+                  <option value="">Todos los tipos</option>
+                  <option value="Life">Life</option>
+                  <option value="Centros Multideportivos">Centros Multideportivos</option>
+                  <option value="Hoteles">Hoteles</option>
+                  <option value="Urban">Urban</option>
+                  <option value="House">House</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold mb-2 text-neutral-900">
+                  Estado
+                </label>
+                <select
+                  value={selectedStatus}
+                  onChange={(e) => setSelectedStatus(e.target.value as ProjectStatus | '')}
+                  className="w-full px-4 py-3 border-2 border-neutral-300 rounded-xl focus:outline-none focus:border-black transition-colors font-medium bg-white"
+                >
+                  <option value="">Todos los estados</option>
+                  <option value="En estudio">En estudio</option>
+                  <option value="En búsqueda de inversión">En búsqueda de inversión</option>
+                  <option value="En ejecución">En ejecución</option>
+                  <option value="Cerrado">Cerrado</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold mb-2 text-neutral-900">
+                  Ubicación
+                </label>
+                <input
+                  type="text"
+                  placeholder="Ej: Barcelona, Madrid..."
+                  value={locationFilter}
+                  onChange={(e) => setLocationFilter(e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-neutral-300 rounded-xl focus:outline-none focus:border-black transition-colors font-medium"
+                />
+              </div>
             </div>
+          </FadeIn>
 
-            <div>
-              <label className="block text-sm font-medium mb-2 text-neutral-700">
-                Ubicación
-              </label>
-              <input
-                type="text"
-                placeholder="Ej: Barcelona, Madrid..."
-                value={locationFilter}
-                onChange={(e) => setLocationFilter(e.target.value)}
-                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-              />
+          <FadeIn delay={0.2}>
+            <div className="mb-6 text-neutral-600 font-medium">
+              <span className="text-black font-bold text-lg">{filteredProjects.length}</span>{' '}
+              proyecto{filteredProjects.length !== 1 ? 's' : ''} encontrado
+              {filteredProjects.length !== 1 ? 's' : ''}
             </div>
-          </div>
+          </FadeIn>
 
-          {/* RESULTADOS */}
-          <div className="mb-4 text-neutral-600">
-            <span className="font-medium">{filteredProjects.length}</span> proyecto
-            {filteredProjects.length !== 1 ? 's' : ''} encontrado
-            {filteredProjects.length !== 1 ? 's' : ''}
-          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {filteredProjects.map((project, idx) => (
+              <FadeIn key={project.id} delay={idx * 0.1}>
+                <div className="group bg-white rounded-3xl overflow-hidden border-2 border-neutral-200 hover:border-black transition-all hover:shadow-2xl">
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={project.heroImage}
+                      alt={project.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-          {/* LISTADO DE PROYECTOS */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project) => (
-              <div
-                key={project.id}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-neutral-100"
-              >
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <span
-                      className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${getStatusColor(
-                        project.status
-                      )}`}
-                    >
-                      {project.status}
-                    </span>
-                    <span className="text-xs font-medium text-neutral-500 bg-neutral-100 px-2 py-1 rounded">
-                      {project.type}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold mb-2">{project.name}</h3>
-
-                  <div className="flex items-center gap-2 text-neutral-600 text-sm mb-3">
-                    <MapPin size={14} />
-                    <span>{project.location}</span>
-                  </div>
-
-                  <div className="space-y-2 mb-4 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-neutral-600">Monto total:</span>
-                      <span className="font-bold">{project.totalAmount}</span>
+                    <div className="absolute top-4 right-4 flex gap-2">
+                      <span
+                        className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider ${getStatusColor(
+                          project.status
+                        )}`}
+                      >
+                        {project.status}
+                      </span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-neutral-600">Ticket mínimo:</span>
-                      <span className="font-bold">{project.minTicket}</span>
+
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <span
+                        className={`inline-block px-3 py-1 rounded-full text-xs font-bold mb-3 border ${getTypeColor(
+                          project.type
+                        )}`}
+                      >
+                        {project.type}
+                      </span>
+                      <h3 className="text-3xl font-black mb-2">{project.name}</h3>
+                      <div className="flex items-center gap-2 text-neutral-300">
+                        <MapPin size={16} />
+                        <span className="font-medium">{project.location}</span>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="bg-neutral-50 rounded-lg p-3 mb-4">
-                    <p className="text-xs font-medium text-neutral-500 mb-1">
-                      Proceso actual:
+                  <div className="p-6">
+                    <p className="text-neutral-700 mb-6 leading-relaxed">
+                      {project.summary}
                     </p>
-                    <p className="text-sm font-medium">{project.currentPhase}</p>
-                  </div>
 
-                  <div className="flex flex-col gap-2">
-                    <Link
-                      to={`/prototype/invertir/${project.slug}`}
-                      className="w-full bg-black text-white text-center py-3 rounded-full font-bold hover:bg-neutral-800 transition-all"
-                    >
-                      Ver proyecto
-                    </Link>
-                    <button className="w-full bg-neutral-100 text-black py-3 rounded-full font-bold hover:bg-neutral-200 transition-all">
-                      Solicitar información
-                    </button>
+                    <div className="grid grid-cols-2 gap-4 mb-6 bg-neutral-50 rounded-xl p-4">
+                      <div>
+                        <div className="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-1">
+                          Monto total
+                        </div>
+                        <div className="text-2xl font-black">{project.totalAmount}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-1">
+                          Ticket mínimo
+                        </div>
+                        <div className="text-2xl font-black">{project.minTicket}</div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-3">
+                      <Link
+                        to={`/prototype/invertir/${project.slug}`}
+                        className="w-full bg-black text-white text-center py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-neutral-800 transition-all flex items-center justify-center gap-2"
+                      >
+                        Ver proyecto completo
+                        <ArrowRight size={16} />
+                      </Link>
+                      <button className="w-full bg-neutral-100 text-black py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-neutral-200 transition-all border border-neutral-300">
+                        Solicitar información
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
 
           {filteredProjects.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-neutral-600 text-lg">
-                No se encontraron proyectos con los filtros seleccionados.
+            <div className="text-center py-16 bg-neutral-50 rounded-3xl">
+              <p className="text-neutral-600 text-lg mb-4">
+                No se encontraron proyectos con los filtros seleccionados
               </p>
               <button
                 onClick={() => {
@@ -258,7 +312,7 @@ export default function ProtoInvertir() {
                   setSelectedStatus('');
                   setLocationFilter('');
                 }}
-                className="mt-4 text-black underline hover:no-underline"
+                className="text-black font-bold underline underline-offset-4 hover:no-underline"
               >
                 Limpiar filtros
               </button>
@@ -267,64 +321,82 @@ export default function ProtoInvertir() {
         </div>
       </section>
 
-      {/* IMPACTO Y TRANSPARENCIA */}
-      <section className="py-20 px-4 bg-neutral-50">
+      <section className="py-24 px-6 bg-neutral-900 text-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-black mb-4 text-center">
-            Impacto y transparencia
-          </h2>
-          <p className="text-center text-neutral-600 mb-12 text-lg">
-            Resultados medibles en cada proyecto.
-          </p>
+          <FadeIn>
+            <h2 className="text-4xl md:text-5xl font-black mb-4 text-center">
+              Impacto y transparencia
+            </h2>
+            <p className="text-center text-neutral-400 mb-16 text-lg">
+              Resultados medibles en cada proyecto
+            </p>
+          </FadeIn>
 
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-5xl font-black mb-2">
-                {GLOBAL_IMPACT.projectsInDevelopment}
+            <FadeIn delay={0.1}>
+              <div className="text-center bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10">
+                <div className="text-6xl font-black mb-3">
+                  {GLOBAL_IMPACT.projectsInDevelopment}
+                </div>
+                <p className="text-neutral-300 font-bold uppercase text-sm tracking-wider">
+                  Proyectos activos
+                </p>
               </div>
-              <p className="text-neutral-600 font-medium">Proyectos en desarrollo</p>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-black mb-2">
-                {GLOBAL_IMPACT.spacesRehabilitated}
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <div className="text-center bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10">
+                <div className="text-6xl font-black mb-3">
+                  {GLOBAL_IMPACT.spacesRehabilitated}
+                </div>
+                <p className="text-neutral-300 font-bold uppercase text-sm tracking-wider">
+                  Espacios rehabilitados
+                </p>
               </div>
-              <p className="text-neutral-600 font-medium">Espacios rehabilitados</p>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-black mb-2">
-                {GLOBAL_IMPACT.estimatedEmployment}
+            </FadeIn>
+            <FadeIn delay={0.3}>
+              <div className="text-center bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10">
+                <div className="text-6xl font-black mb-3">
+                  {GLOBAL_IMPACT.estimatedEmployment}
+                </div>
+                <p className="text-neutral-300 font-bold uppercase text-sm tracking-wider">
+                  Empleo estimado
+                </p>
               </div>
-              <p className="text-neutral-600 font-medium">Empleo estimado</p>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-black mb-2">
-                {GLOBAL_IMPACT.communitiesActivated}
+            </FadeIn>
+            <FadeIn delay={0.4}>
+              <div className="text-center bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10">
+                <div className="text-6xl font-black mb-3">
+                  {GLOBAL_IMPACT.communitiesActivated}
+                </div>
+                <p className="text-neutral-300 font-bold uppercase text-sm tracking-wider">
+                  Comunidades
+                </p>
               </div>
-              <p className="text-neutral-600 font-medium">Comunidades activadas</p>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* CTA FINAL */}
-      <section id="contacto" className="py-20 px-4 bg-black text-white">
+      <section id="contacto" className="py-24 px-6 bg-black text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            Solicitar información del proyecto adecuado
-          </h2>
-          <p className="text-xl mb-8 text-neutral-300">
-            Nuestro equipo te ayudará a encontrar la oportunidad que mejor se ajuste a
-            tu perfil inversor.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-black px-12 py-4 rounded-full font-bold text-lg hover:bg-neutral-100 transition-all flex items-center justify-center gap-2">
-              <TrendingUp size={20} />
-              Solicitar información
-            </button>
-            <button className="bg-transparent border-2 border-white text-white px-12 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all">
-              Agendar reunión
-            </button>
-          </div>
+          <FadeIn>
+            <h2 className="text-4xl md:text-5xl font-black mb-6">
+              Encuentra tu proyecto
+            </h2>
+            <p className="text-xl mb-10 text-neutral-300">
+              Nuestro equipo te ayudará a identificar la oportunidad que mejor se
+              ajuste a tu perfil inversor
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-white text-black px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-neutral-200 transition-all flex items-center justify-center gap-2">
+                <TrendingUp size={20} />
+                Solicitar información
+              </button>
+              <button className="bg-transparent border-2 border-white text-white px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all">
+                Agendar reunión
+              </button>
+            </div>
+          </FadeIn>
         </div>
       </section>
     </div>

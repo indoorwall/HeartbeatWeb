@@ -13,6 +13,19 @@ export interface ProjectImpact {
   community: string;
 }
 
+export interface ProjectImage {
+  id: string;
+  title: string;
+  url: string;
+  category: 'render' | 'entorno' | 'masterplan' | 'urbano' | 'deporte' | 'interior' | 'arquitectura';
+}
+
+export interface ProjectMetrics {
+  surface: string;
+  phases: string;
+  estimatedImpact: string;
+}
+
 export interface InvestmentProject {
   id: string;
   slug: string;
@@ -30,6 +43,16 @@ export interface InvestmentProject {
   relatedLink?: {
     url: string;
     label: string;
+  };
+  heroImage: string;
+  gallery: ProjectImage[];
+  masterplanImage?: string;
+  metrics: ProjectMetrics;
+  includes: {
+    centros: boolean;
+    alojamiento: boolean;
+    restaurantes: boolean;
+    urban: boolean;
   };
 }
 
@@ -57,6 +80,57 @@ export const INVESTMENT_PROJECTS: InvestmentProject[] = [
       employment: '35 empleos directos',
       rehabilitation: '15 hectáreas recuperadas',
       community: 'Alianzas con 8 productores locales',
+    },
+    heroImage: 'https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [
+      {
+        id: 'lp1',
+        title: 'Render arquitectónico principal',
+        url: 'https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        category: 'render',
+      },
+      {
+        id: 'lp2',
+        title: 'Entorno natural',
+        url: 'https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        category: 'entorno',
+      },
+      {
+        id: 'lp3',
+        title: 'Cabañas integradas',
+        url: 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        category: 'arquitectura',
+      },
+      {
+        id: 'lp4',
+        title: 'Zona wellness',
+        url: 'https://images.pexels.com/photos/3759660/pexels-photo-3759660.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        category: 'interior',
+      },
+      {
+        id: 'lp5',
+        title: 'Espacios outdoor',
+        url: 'https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        category: 'deporte',
+      },
+      {
+        id: 'lp6',
+        title: 'Vista aérea del valle',
+        url: 'https://images.pexels.com/photos/1761279/pexels-photo-1761279.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        category: 'entorno',
+      },
+    ],
+    masterplanImage: 'https://images.pexels.com/photos/8293642/pexels-photo-8293642.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    metrics: {
+      surface: '15 hectáreas',
+      phases: '5 fases',
+      estimatedImpact: 'Alto',
+    },
+    includes: {
+      centros: true,
+      alojamiento: true,
+      restaurantes: true,
+      urban: false,
     },
   },
   {
@@ -87,6 +161,57 @@ export const INVESTMENT_PROJECTS: InvestmentProject[] = [
       url: '/prototype/centros',
       label: 'Ver otros centros activos',
     },
+    heroImage: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [
+      {
+        id: 'sev1',
+        title: 'Nave industrial antes',
+        url: 'https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        category: 'urbano',
+      },
+      {
+        id: 'sev2',
+        title: 'Render zona boxing',
+        url: 'https://images.pexels.com/photos/4752861/pexels-photo-4752861.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        category: 'render',
+      },
+      {
+        id: 'sev3',
+        title: 'Render zona crossfit',
+        url: 'https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        category: 'deporte',
+      },
+      {
+        id: 'sev4',
+        title: 'Rehabilitación estructural',
+        url: 'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        category: 'urbano',
+      },
+      {
+        id: 'sev5',
+        title: 'Zona social',
+        url: 'https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        category: 'interior',
+      },
+      {
+        id: 'sev6',
+        title: 'Fachada integrada',
+        url: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        category: 'arquitectura',
+      },
+    ],
+    masterplanImage: 'https://images.pexels.com/photos/7841468/pexels-photo-7841468.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    metrics: {
+      surface: '3.500m²',
+      phases: '5 fases',
+      estimatedImpact: 'Alto',
+    },
+    includes: {
+      centros: true,
+      alojamiento: false,
+      restaurantes: true,
+      urban: false,
+    },
   },
   {
     id: 'centro-valencia',
@@ -115,6 +240,19 @@ export const INVESTMENT_PROJECTS: InvestmentProject[] = [
     relatedLink: {
       url: '/prototype/centros',
       label: 'Ver centros operativos',
+    },
+    heroImage: 'https://images.pexels.com/photos/3628700/pexels-photo-3628700.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [],
+    metrics: {
+      surface: '2.800m²',
+      phases: '5 fases',
+      estimatedImpact: 'Medio-Alto',
+    },
+    includes: {
+      centros: true,
+      alojamiento: false,
+      restaurantes: true,
+      urban: false,
     },
   },
   {
@@ -145,6 +283,19 @@ export const INVESTMENT_PROJECTS: InvestmentProject[] = [
       url: '/prototype/alojamiento',
       label: 'Ver alojamientos disponibles',
     },
+    heroImage: 'https://images.pexels.com/photos/1001965/pexels-photo-1001965.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [],
+    metrics: {
+      surface: '3.200m²',
+      phases: '5 fases',
+      estimatedImpact: 'Alto',
+    },
+    includes: {
+      centros: false,
+      alojamiento: true,
+      restaurantes: true,
+      urban: false,
+    },
   },
   {
     id: 'urban-barcelona',
@@ -170,6 +321,19 @@ export const INVESTMENT_PROJECTS: InvestmentProject[] = [
       rehabilitation: 'Variable según ubicación',
       community: 'Hub de 500+ miembros',
     },
+    heroImage: 'https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [],
+    metrics: {
+      surface: '2.200m²',
+      phases: '5 fases',
+      estimatedImpact: 'Alto',
+    },
+    includes: {
+      centros: true,
+      alojamiento: false,
+      restaurantes: true,
+      urban: true,
+    },
   },
   {
     id: 'house-madrid',
@@ -194,6 +358,19 @@ export const INVESTMENT_PROJECTS: InvestmentProject[] = [
       employment: '12 empleos indirectos',
       rehabilitation: 'Edificio histórico 1.400m²',
       community: 'Comunidad de 18 residentes',
+    },
+    heroImage: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [],
+    metrics: {
+      surface: '1.400m²',
+      phases: '5 fases',
+      estimatedImpact: 'Medio',
+    },
+    includes: {
+      centros: true,
+      alojamiento: true,
+      restaurantes: false,
+      urban: false,
     },
   },
 ];
