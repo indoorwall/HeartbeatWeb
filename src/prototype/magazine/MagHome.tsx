@@ -12,10 +12,31 @@ export default function MagHome() {
   return (
     <div className="pb-20">
       
+      {/* ACCESO ALTERNATIVO - BANNER */}
+      <section className="bg-brand-start text-white py-4 px-6 md:px-12 border-b border-black/10">
+        <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="font-sans text-[10px] font-bold uppercase tracking-widest">
+              Negocio alternativo
+            </span>
+            <span className="hidden md:inline text-white/60">•</span>
+            <p className="font-serif text-sm text-white/90 hidden md:block">
+              Accede gratis siendo socio Heartbeat o suscríbete por 5€/mes
+            </p>
+          </div>
+          <Link
+            to="/prototype/magazine/subscribe"
+            className="font-sans text-[10px] font-bold uppercase tracking-widest bg-white text-black px-6 py-2 rounded-full hover:bg-neutral-100 transition-colors"
+          >
+            Ver opciones de acceso
+          </Link>
+        </div>
+      </section>
+
       {/* 1. PORTADA EDITORIAL (HERO) */}
       <section className="px-6 md:px-12 py-16 md:py-24 border-b border-neutral-200">
         <div className="max-w-[1600px] mx-auto grid lg:grid-cols-12 gap-16">
-          
+
           {/* Main Story (7 cols) */}
           <div className="lg:col-span-7 group cursor-pointer">
             <Link to={`/prototype/magazine/article/${featuredArticle.slug}`}>
@@ -24,6 +45,11 @@ export default function MagHome() {
                 <div className="absolute top-6 left-6 bg-white px-4 py-2 font-sans text-[10px] font-bold uppercase tracking-widest text-black">
                   Historia de Portada
                 </div>
+                {featuredArticle.isPremium && (
+                  <div className="absolute top-6 right-6 bg-black/80 backdrop-blur-sm px-4 py-2 font-sans text-[10px] font-bold uppercase tracking-widest text-white flex items-center gap-2">
+                    <span>Premium</span>
+                  </div>
+                )}
               </div>
               <div className="flex items-center gap-3 mb-6 font-sans text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                 <span className="text-brand-start">Serie: El Latido</span>

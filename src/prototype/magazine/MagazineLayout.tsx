@@ -14,7 +14,7 @@ export default function MagazineLayout() {
     { label: 'Guías', path: '/prototype/magazine/guides', desc: 'Utilidad pura' },
     { label: 'Archivo', path: '/prototype/magazine/archive', desc: 'Biblioteca' },
     { label: 'Newsletter', path: '/prototype/magazine/newsletter', desc: 'Tu buzón' },
-    { label: 'Suscripción', path: '/prototype/magazine/subscribe', desc: 'Únete al club', highlight: true },
+    { label: 'Acceso', path: '/prototype/magazine/subscribe', desc: 'Socios o suscripción', highlight: true },
   ];
 
   return (
@@ -69,11 +69,11 @@ export default function MagazineLayout() {
             <Link to="/prototype" className="hidden md:block font-sans text-[10px] font-bold uppercase tracking-widest text-neutral-400 hover:text-black transition-colors">
               Volver a Heartbeat
             </Link>
-            <Link 
+            <Link
               to="/prototype/magazine/subscribe"
               className="font-sans text-[10px] font-bold uppercase tracking-widest bg-black text-white px-5 py-2.5 rounded-full hover:bg-neutral-800 transition-colors shadow-md"
             >
-              Suscribirse
+              Acceso
             </Link>
           </div>
         </div>
@@ -164,7 +164,7 @@ export default function MagazineLayout() {
             <h4 className="font-sans text-[10px] font-bold uppercase tracking-widest mb-8 text-black">Comunidad</h4>
             <ul className="space-y-4 font-serif text-lg text-neutral-600">
               <li><Link to="/prototype/magazine/newsletter" className="hover:text-black hover:underline decoration-1 underline-offset-4">Newsletter</Link></li>
-              <li><Link to="/prototype/magazine/subscribe" className="hover:text-black hover:underline decoration-1 underline-offset-4">Suscripción</Link></li>
+              <li><Link to="/prototype/magazine/subscribe" className="hover:text-black hover:underline decoration-1 underline-offset-4">Acceso</Link></li>
               <li><Link to="#" className="hover:text-black hover:underline decoration-1 underline-offset-4">Patrocinios</Link></li>
             </ul>
           </div>
