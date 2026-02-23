@@ -1,23 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowRight, MapPin, CheckCircle2, Clock, Users, TrendingUp, Calendar } from 'lucide-react';
-import { getSportDetail } from '../../data/sport_detail_data';
-import { getCentrosBySport, CENTROS_ACTIVOS } from '../../data/centros_data';
+import { MapPin, Clock, TrendingUp, Users, Calendar, ChevronDown, ArrowRight, CheckCircle } from 'lucide-react';
+import { SPORT_DETAILS } from '../../data/sport_detail_data';
+import { SPORTS_DATA, LOCATIONS_DATA } from '../../data/sports_data';
+import { AGENDA_DATA } from '../../data/agenda_data';
 import FadeIn from '../../components/animations/FadeIn';
+import BreathingCard from '../../components/animations/BreathingCard';
 
 export default function ProtoSportDetail() {
   const { slug } = useParams<{ slug: string }>();
+  const sportDetail = slug ? SPORT_DETAILS[slug] : undefined;
+  const sport = SPORTS_DATA.find(s => s.id === slug);
+
   const [selectedCentro, setSelectedCentro] = useState<string>('all');
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const sport = getSportDetail(slug || '');
-  const centros = getCentrosBySport(slug || '');
+  const availableCentros = useMemo(() => {
+    if (!slug) return [];
+    return LOCATIONS_DATA.filter(loc => loc.sports.includes(slug));
+  }, [slug]);
 
-  if (!sport) {
+  const relatedEvents = useMemo(() => {
+    if (!sport) return [];
+    return AGENDA_DATA.filter(event => event.sport === sport.name);
+  }, [sport]);
+
+  if (!sportDetail || !sport) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Deporte no encontrado</h1>
-          <Link to="/prototype/deportes" className="text-brand-start underline">
+          <h1 className="text-4xl font-black mb-4">Deporte no encontrado</h1>
+          <Link to="/prototype/deportes" className="text-black underline underline-offset-4">
             Volver a deportes
           </Link>
         </div>
@@ -26,293 +39,232 @@ export default function ProtoSportDetail() {
   }
 
   return (
-    <div className="bg-white">
-      {/* 1️⃣ HERO */}
-      <section className="relative h-[85vh] min-h-[700px] bg-neutral-900 text-white">
+    <div className="bg-neutral-50 min-h-screen">
+
+      <section className="relative h-[70vh] min-h-[600px] bg-black text-white overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={sport.heroImage}
-            alt={sport.name}
+            src={sportDetail.heroImage}
+            alt={sportDetail.name}
             className="w-full h-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black" />
         </div>
 
-        <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-end pb-20">
-          <FadeIn>
-            <div className="flex flex-wrap items-center gap-4 mb-6">
-              <span className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20">
-                {sport.environment}
-              </span>
-              <span className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20">
-                {sport.level}
-              </span>
-              <span className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20">
-                Intensidad {sport.intensity}
-              </span>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <h1 className="text-7xl md:text-9xl font-black uppercase tracking-tighter mb-6 leading-none">
-              {sport.name}
-            </h1>
-          </FadeIn>
-
-          <FadeIn delay={0.3}>
-            <p className="text-2xl md:text-3xl text-neutral-300 max-w-3xl mb-12 font-medium leading-relaxed">
-              {sport.tagline}
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.4}>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#horarios"
-                className="bg-white text-black px-8 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-neutral-200 transition-colors text-sm"
-              >
-                Ver disponibilidad
-              </a>
-              <a
-                href="#centros"
-                className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white/20 transition-colors text-sm"
-              >
-                Ver centros
-              </a>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* 2️⃣ QUÉ ES EN HEARTBEAT */}
-      <section className="py-24 px-6 bg-neutral-50">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <h2 className="text-xs font-bold uppercase tracking-widest text-brand-start mb-4">
-              Qué es en Heartbeat
-            </h2>
-            <h3 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">
-              {sport.name} a nuestra manera
-            </h3>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <p className="text-xl text-neutral-700 leading-relaxed mb-12">
-              {sport.whatIsIt.approach}
-            </p>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-2 gap-12">
-            <FadeIn delay={0.3}>
-              <div>
-                <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
-                  <TrendingUp size={20} className="text-brand-start" />
-                  En qué se diferencia
-                </h4>
-                <ul className="space-y-3">
-                  {sport.whatIsIt.differences.map((diff, i) => (
-                    <li key={i} className="flex items-start gap-3 text-neutral-600">
-                      <CheckCircle2 size={20} className="text-green-600 mt-0.5 shrink-0" />
-                      <span>{diff}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        <div className="relative z-10 h-full flex items-center justify-center px-6">
+          <div className="text-center max-w-4xl">
+            <FadeIn>
+              <h1 className="text-7xl md:text-9xl font-black tracking-tighter mb-6">
+                {sportDetail.name.toUpperCase()}
+              </h1>
             </FadeIn>
-
+            <FadeIn delay={0.2}>
+              <p className="text-2xl md:text-3xl font-medium text-neutral-300 mb-12">
+                {sportDetail.tagline}
+              </p>
+            </FadeIn>
             <FadeIn delay={0.4}>
-              <div className="bg-white p-6 rounded-2xl border border-neutral-200">
-                <h4 className="font-bold text-lg mb-4">Características</h4>
-                <ul className="space-y-3 text-sm">
-                  {sport.whatIsIt.features.map((feature, i) => (
-                    <li key={i} className="text-neutral-600">
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="#centros"
+                  className="bg-white text-black px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-neutral-200 transition-colors"
+                >
+                  Ver centros
+                </a>
+                <Link
+                  to="/prototype/reservar"
+                  className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-colors"
+                >
+                  Ver disponibilidad
+                </Link>
               </div>
             </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* 3️⃣ DÓNDE PRACTICARLO */}
-      <section id="centros" className="py-24 px-6">
+      <section className="py-20 px-6 max-w-5xl mx-auto">
+        <FadeIn>
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="bg-white rounded-2xl p-6 text-center border border-neutral-200">
+              <TrendingUp size={32} className="mx-auto mb-3 text-black" />
+              <p className="text-sm font-bold uppercase tracking-wider text-neutral-500 mb-2">Nivel</p>
+              <p className="text-xl font-black">{sportDetail.level}</p>
+            </div>
+            <div className="bg-white rounded-2xl p-6 text-center border border-neutral-200">
+              <MapPin size={32} className="mx-auto mb-3 text-black" />
+              <p className="text-sm font-bold uppercase tracking-wider text-neutral-500 mb-2">Entorno</p>
+              <p className="text-xl font-black">{sportDetail.environment}</p>
+            </div>
+            <div className="bg-white rounded-2xl p-6 text-center border border-neutral-200">
+              <TrendingUp size={32} className="mx-auto mb-3 text-black" />
+              <p className="text-sm font-bold uppercase tracking-wider text-neutral-500 mb-2">Intensidad</p>
+              <p className="text-xl font-black">{sportDetail.intensity}</p>
+            </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={0.2}>
+          <h2 className="text-4xl md:text-5xl font-black mb-6">
+            {sportDetail.name} en Heartbeat
+          </h2>
+          <div className="prose prose-lg max-w-none mb-8">
+            <p className="text-xl leading-relaxed text-neutral-700">
+              {sportDetail.whatIsIt.approach}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="bg-white rounded-2xl p-8 border border-neutral-200">
+              <h3 className="text-lg font-bold uppercase tracking-wider text-neutral-500 mb-4">
+                Cómo lo trabajamos
+              </h3>
+              <ul className="space-y-3">
+                {sportDetail.whatIsIt.differences.map((diff, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle size={20} className="text-black mt-1 shrink-0" />
+                    <span className="text-neutral-700">{diff}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 border border-neutral-200">
+              <h3 className="text-lg font-bold uppercase tracking-wider text-neutral-500 mb-4">
+                Características
+              </h3>
+              <ul className="space-y-3">
+                {sportDetail.whatIsIt.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle size={20} className="text-black mt-1 shrink-0" />
+                    <span className="text-neutral-700">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </FadeIn>
+      </section>
+
+      <section id="centros" className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <div className="flex items-end justify-between mb-12">
-              <div>
-                <h2 className="text-xs font-bold uppercase tracking-widest text-brand-start mb-4">
-                  Dónde practicarlo
-                </h2>
-                <h3 className="text-4xl md:text-5xl font-black tracking-tight">
-                  Centros disponibles
-                </h3>
-              </div>
-              <span className="text-sm font-bold text-neutral-500 uppercase tracking-widest">
-                {centros.length} {centros.length === 1 ? 'Centro' : 'Centros'}
-              </span>
-            </div>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">Dónde practicarlo</h2>
+            <p className="text-xl text-neutral-600 mb-12">
+              Centros Heartbeat donde puedes disfrutar de {sportDetail.name.toLowerCase()}.
+            </p>
           </FadeIn>
 
-          {centros.length > 0 ? (
-            <div className="grid md:grid-cols-2 gap-8">
-              {centros.map((centro, idx) => (
-                <FadeIn key={centro.id} delay={idx * 0.1}>
-                  <div className="group bg-white border-2 border-neutral-200 rounded-3xl overflow-hidden hover:border-black transition-all hover:shadow-2xl">
-                    <div className="aspect-video relative bg-neutral-100">
+          {availableCentros.length === 0 ? (
+            <div className="text-center py-16 bg-neutral-50 rounded-3xl">
+              <p className="text-neutral-500 text-lg">
+                Próximamente disponible en nuevos centros.
+              </p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {availableCentros.map((centro, idx) => (
+                <BreathingCard
+                  key={centro.id}
+                  to={`/prototype/centros/${centro.id}`}
+                  delay={idx * 0.1}
+                >
+                  <div className="bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-200 h-full flex flex-col group-hover:border-black transition-all">
+                    <div className="aspect-[4/3] relative overflow-hidden">
                       <img
                         src={centro.image}
                         alt={centro.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       />
-                      {centro.hasAccommodation && (
-                        <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-widest">
-                          Alojamiento
-                        </div>
-                      )}
+                      <div className="absolute top-4 right-4">
+                        <span className="bg-black/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                          {centro.environment || sportDetail.environment}
+                        </span>
+                      </div>
                     </div>
 
-                    <div className="p-8">
-                      <div className="flex items-center gap-2 mb-3 text-sm text-neutral-500">
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h3 className="text-2xl font-bold mb-2">{centro.name}</h3>
+                      <div className="flex items-center gap-2 text-neutral-500 mb-4">
                         <MapPin size={16} />
-                        {centro.city}
+                        <span className="text-sm font-medium">{centro.city}</span>
                       </div>
-
-                      <h4 className="text-2xl font-bold mb-3 group-hover:text-brand-start transition-colors">
-                        {centro.name}
-                      </h4>
-
-                      <p className="text-neutral-600 mb-6 leading-relaxed">
-                        {centro.description}
+                      <p className="text-neutral-600 mb-6 flex-1">
+                        {centro.subtitle}
                       </p>
 
-                      <div className="flex gap-3">
+                      <div className="flex flex-col gap-2">
                         <Link
-                          to={`/prototype/centros/${centro.slug}`}
-                          className="flex-1 text-center bg-black text-white px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-neutral-800 transition-colors"
+                          to={`/prototype/centros/${centro.id}`}
+                          className="w-full bg-black text-white py-3 rounded-xl font-bold text-sm uppercase tracking-wider hover:bg-neutral-800 transition-colors text-center"
                         >
                           Ver centro
                         </Link>
-                        <button className="flex-1 text-center border-2 border-black text-black px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-black hover:text-white transition-colors">
+                        <Link
+                          to="/prototype/reservar"
+                          className="w-full bg-neutral-100 text-black py-3 rounded-xl font-bold text-sm uppercase tracking-wider hover:bg-neutral-200 transition-colors text-center"
+                        >
                           Reservar sesión
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
-                </FadeIn>
+                </BreathingCard>
               ))}
-            </div>
-          ) : (
-            <div className="bg-neutral-50 p-16 rounded-3xl text-center border border-dashed border-neutral-300">
-              <p className="text-neutral-500 text-xl">
-                Próximamente en más centros Heartbeat
-              </p>
             </div>
           )}
         </div>
       </section>
 
-      {/* 4️⃣ HORARIOS Y SESIONES */}
-      <section id="horarios" className="py-24 px-6 bg-neutral-50">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-20 px-6 bg-neutral-50">
+        <div className="max-w-6xl mx-auto">
           <FadeIn>
-            <h2 className="text-xs font-bold uppercase tracking-widest text-brand-start mb-4">
-              Horarios y sesiones
-            </h2>
-            <h3 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">
-              Encuentra tu momento
-            </h3>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <div className="bg-white p-8 rounded-2xl border border-neutral-200">
-              <div className="flex items-center gap-3 mb-6">
-                <Calendar size={24} className="text-brand-start" />
-                <p className="text-neutral-600">
-                  Los horarios varían según el centro. Selecciona un centro arriba para ver su
-                  disponibilidad específica y reservar.
-                </p>
-              </div>
-
-              <a
-                href="#centros"
-                className="inline-flex items-center gap-2 text-brand-start font-bold hover:underline"
-              >
-                Ver centros y horarios <ArrowRight size={16} />
-              </a>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* 5️⃣ PRECIOS */}
-      <section className="py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-brand-start mb-4">
-                Precios
-              </h2>
-              <h3 className="text-4xl md:text-5xl font-black tracking-tight">
-                Elige tu plan
-              </h3>
-            </div>
+            <h2 className="text-4xl md:text-5xl font-black mb-12 text-center">Precios</h2>
           </FadeIn>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {sport.prices.map((plan, idx) => (
+            {sportDetail.prices.map((price, idx) => (
               <FadeIn key={idx} delay={idx * 0.1}>
                 <div
-                  className={`relative p-8 rounded-3xl border-2 ${
-                    plan.recommended
-                      ? 'border-black bg-black text-white transform scale-105'
-                      : 'border-neutral-200 bg-white'
-                  }`}
+                  className={`bg-white rounded-3xl p-8 border-2 ${
+                    price.recommended
+                      ? 'border-black shadow-xl scale-105'
+                      : 'border-neutral-200'
+                  } relative`}
                 >
-                  {plan.recommended && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-start text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
-                      Recomendado
+                  {price.recommended && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                      <span className="bg-black text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider">
+                        Recomendado
+                      </span>
                     </div>
                   )}
 
-                  <h4 className="font-bold text-lg mb-2">{plan.name}</h4>
-
-                  <div className="flex items-baseline gap-2 mb-6">
-                    <span className="text-5xl font-black">{plan.price}</span>
-                    <span className={plan.recommended ? 'text-neutral-400' : 'text-neutral-500'}>
-                      {plan.period}
-                    </span>
+                  <h3 className="text-2xl font-black mb-2">{price.name}</h3>
+                  <div className="flex items-baseline mb-6">
+                    <span className="text-5xl font-black">{price.price}</span>
+                    <span className="text-xl text-neutral-500 ml-2">{price.period}</span>
                   </div>
 
                   <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, i) => (
-                      <li
-                        key={i}
-                        className={`flex items-start gap-3 text-sm ${
-                          plan.recommended ? 'text-neutral-300' : 'text-neutral-600'
-                        }`}
-                      >
-                        <CheckCircle2
-                          size={18}
-                          className={`mt-0.5 shrink-0 ${
-                            plan.recommended ? 'text-brand-start' : 'text-green-600'
-                          }`}
-                        />
-                        <span>{feature}</span>
+                    {price.features.map((feature, fIdx) => (
+                      <li key={fIdx} className="flex items-start gap-3">
+                        <CheckCircle size={18} className="text-black mt-0.5 shrink-0" />
+                        <span className="text-sm text-neutral-700">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <button
-                    className={`w-full py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-colors ${
-                      plan.recommended
-                        ? 'bg-white text-black hover:bg-neutral-200'
-                        : 'bg-black text-white hover:bg-neutral-800'
+                  <Link
+                    to="/prototype/reservar"
+                    className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider transition-colors block text-center ${
+                      price.recommended
+                        ? 'bg-black text-white hover:bg-neutral-800'
+                        : 'bg-neutral-100 text-black hover:bg-neutral-200'
                     }`}
                   >
-                    Seleccionar
-                  </button>
+                    Reservar
+                  </Link>
                 </div>
               </FadeIn>
             ))}
@@ -320,171 +272,221 @@ export default function ProtoSportDetail() {
         </div>
       </section>
 
-      {/* 6️⃣ CÓMO SE VIVE */}
-      <section className="py-24 px-6 bg-neutral-900 text-white">
+      <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <div className="text-center mb-16">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-brand-start mb-4">
-                Cómo se vive
-              </h2>
-              <h3 className="text-4xl md:text-5xl font-black tracking-tight">
-                La experiencia completa
-              </h3>
-            </div>
+            <h2 className="text-4xl md:text-5xl font-black mb-12 text-center">
+              Cómo se vive
+            </h2>
           </FadeIn>
 
           <div className="grid md:grid-cols-3 gap-8">
             <FadeIn delay={0.1}>
-              <div className="group">
-                <div className="aspect-square rounded-2xl overflow-hidden mb-6 bg-neutral-800">
+              <div className="bg-neutral-50 rounded-3xl overflow-hidden border border-neutral-200">
+                <div className="aspect-[4/3] relative overflow-hidden">
                   <img
-                    src={sport.community.image}
-                    alt={sport.community.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    src={sportDetail.community.image}
+                    alt={sportDetail.community.title}
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                <h4 className="text-2xl font-bold mb-4">{sport.community.title}</h4>
-                <p className="text-neutral-400 leading-relaxed">{sport.community.text}</p>
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Users size={24} className="text-black" />
+                    <h3 className="text-2xl font-bold">{sportDetail.community.title}</h3>
+                  </div>
+                  <p className="text-neutral-600 leading-relaxed">
+                    {sportDetail.community.text}
+                  </p>
+                </div>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <div className="group">
-                <div className="aspect-square rounded-2xl overflow-hidden mb-6 bg-neutral-800">
+              <div className="bg-neutral-50 rounded-3xl overflow-hidden border border-neutral-200">
+                <div className="aspect-[4/3] relative overflow-hidden">
                   <img
-                    src={sport.technology.image}
-                    alt={sport.technology.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    src={sportDetail.technology.image}
+                    alt={sportDetail.technology.title}
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                <h4 className="text-2xl font-bold mb-4">{sport.technology.title}</h4>
-                <p className="text-neutral-400 leading-relaxed">{sport.technology.text}</p>
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <TrendingUp size={24} className="text-black" />
+                    <h3 className="text-2xl font-bold">{sportDetail.technology.title}</h3>
+                  </div>
+                  <p className="text-neutral-600 leading-relaxed">
+                    {sportDetail.technology.text}
+                  </p>
+                </div>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <div className="group">
-                <div className="aspect-square rounded-2xl overflow-hidden mb-6 bg-neutral-800">
+              <div className="bg-neutral-50 rounded-3xl overflow-hidden border border-neutral-200">
+                <div className="aspect-[4/3] relative overflow-hidden">
                   <img
-                    src={sport.events.image}
-                    alt={sport.events.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    src={sportDetail.events.image}
+                    alt={sportDetail.events.title}
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                <h4 className="text-2xl font-bold mb-4">{sport.events.title}</h4>
-                <p className="text-neutral-400 leading-relaxed">{sport.events.text}</p>
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Calendar size={24} className="text-black" />
+                    <h3 className="text-2xl font-bold">{sportDetail.events.title}</h3>
+                  </div>
+                  <p className="text-neutral-600 leading-relaxed">
+                    {sportDetail.events.text}
+                  </p>
+                </div>
               </div>
             </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* 7️⃣ EVENTOS RELACIONADOS */}
-      <section className="py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <div className="flex items-end justify-between mb-12">
-              <div>
-                <h2 className="text-xs font-bold uppercase tracking-widest text-brand-start mb-4">
-                  Eventos
-                </h2>
-                <h3 className="text-4xl md:text-5xl font-black tracking-tight">
-                  Próximos eventos de {sport.name}
-                </h3>
-              </div>
-              <Link
-                to="/prototype/agenda"
-                className="hidden md:flex items-center gap-2 text-brand-start font-bold hover:underline"
-              >
-                Ver todos <ArrowRight size={16} />
-              </Link>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <div className="bg-neutral-50 p-16 rounded-3xl text-center border border-dashed border-neutral-300">
-              <p className="text-neutral-500 text-xl mb-4">
-                Próximamente eventos y competiciones
-              </p>
-              <Link
-                to="/prototype/agenda"
-                className="inline-flex items-center gap-2 text-brand-start font-bold hover:underline"
-              >
-                Ver agenda completa <ArrowRight size={16} />
-              </Link>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* 8️⃣ INTEGRACIÓN CON EL ECOSISTEMA */}
-      <section className="py-24 px-6 bg-neutral-50">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <h2 className="text-xs font-bold uppercase tracking-widest text-brand-start mb-4">
-              Ecosistema Heartbeat
-            </h2>
-            <h3 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">
-              Este deporte forma parte de...
-            </h3>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <div className="bg-white p-8 rounded-2xl border border-neutral-200">
-              <div className="grid md:grid-cols-2 gap-8">
+      {relatedEvents.length > 0 && (
+        <section className="py-20 px-6 bg-neutral-50">
+          <div className="max-w-7xl mx-auto">
+            <FadeIn>
+              <div className="flex items-center justify-between mb-12">
                 <div>
-                  <h4 className="font-bold text-lg mb-4">Centros donde se practica</h4>
-                  <ul className="space-y-3">
-                    {centros.map((centro) => (
-                      <li key={centro.id}>
-                        <Link
-                          to={`/prototype/centros/${centro.slug}`}
-                          className="flex items-center gap-2 text-neutral-600 hover:text-black hover:underline"
-                        >
-                          <MapPin size={16} />
-                          {centro.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  <h2 className="text-4xl md:text-5xl font-black mb-2">Eventos relacionados</h2>
+                  <p className="text-xl text-neutral-600">
+                    Próximas actividades de {sportDetail.name.toLowerCase()}
+                  </p>
                 </div>
-
-                <div>
-                  <h4 className="font-bold text-lg mb-4">Servicios relacionados</h4>
-                  <ul className="space-y-3">
-                    {sport.ecosystem.relatedServices.map((service, i) => (
-                      <li key={i} className="flex items-center gap-2 text-neutral-600">
-                        <CheckCircle2 size={16} className="text-green-600" />
-                        {service}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <Link
+                  to="/prototype/agenda"
+                  className="hidden md:flex items-center gap-2 text-black font-bold hover:gap-4 transition-all"
+                >
+                  Ver todos <ArrowRight size={20} />
+                </Link>
               </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+            </FadeIn>
 
-      {/* 9️⃣ FAQ */}
-      <section className="py-24 px-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {relatedEvents.slice(0, 3).map((event, idx) => (
+                <FadeIn key={event.id} delay={idx * 0.1}>
+                  <div className="bg-white rounded-2xl overflow-hidden border border-neutral-200 hover:border-black transition-all">
+                    <div className="aspect-[4/3] relative overflow-hidden">
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="text-center">
+                          <p className="text-3xl font-black">{event.date.split(' ')[0]}</p>
+                          <p className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                            {event.date.split(' ')[1]}
+                          </p>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold leading-tight mb-2">
+                            {event.title}
+                          </h3>
+                          <div className="flex items-center gap-2 text-sm text-neutral-500">
+                            <Clock size={14} />
+                            <span>{event.time}</span>
+                            <span className="mx-2">•</span>
+                            <MapPin size={14} />
+                            <span>{event.city}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-neutral-600 text-sm mb-4">{event.description}</p>
+                      {event.spotsLeft && (
+                        <p className="text-xs font-bold text-neutral-500 mb-4">
+                          {event.spotsLeft} plazas disponibles
+                        </p>
+                      )}
+                      <Link
+                        to="/prototype/agenda"
+                        className="w-full bg-black text-white py-3 rounded-xl font-bold text-sm uppercase tracking-wider hover:bg-neutral-800 transition-colors block text-center"
+                      >
+                        Más info
+                      </Link>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+
+            <Link
+              to="/prototype/agenda"
+              className="md:hidden mt-8 flex items-center justify-center gap-2 text-black font-bold"
+            >
+              Ver todos los eventos <ArrowRight size={20} />
+            </Link>
+          </div>
+        </section>
+      )}
+
+      <section className="py-20 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <FadeIn>
-            <h2 className="text-xs font-bold uppercase tracking-widest text-brand-start mb-4 text-center">
-              Preguntas frecuentes
+            <h2 className="text-4xl md:text-5xl font-black mb-4 text-center">
+              Integración en el ecosistema
             </h2>
-            <h3 className="text-4xl md:text-5xl font-black mb-16 tracking-tight text-center">
-              Todo lo que necesitas saber
-            </h3>
+            <p className="text-xl text-neutral-600 mb-12 text-center">
+              {sportDetail.name} forma parte del universo Heartbeat completo.
+            </p>
           </FadeIn>
 
-          <div className="space-y-6">
-            {sport.faqs.map((faq, idx) => (
+          <FadeIn delay={0.2}>
+            <div className="bg-neutral-50 rounded-3xl p-10 border border-neutral-200">
+              <h3 className="text-lg font-bold uppercase tracking-wider text-neutral-500 mb-6">
+                Servicios relacionados
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {sportDetail.ecosystem.relatedServices.map((service, idx) => (
+                  <span
+                    key={idx}
+                    className="bg-white px-6 py-3 rounded-full text-sm font-bold border border-neutral-200"
+                  >
+                    {service}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <section className="py-20 px-6 bg-neutral-50">
+        <div className="max-w-4xl mx-auto">
+          <FadeIn>
+            <h2 className="text-4xl md:text-5xl font-black mb-12 text-center">
+              Preguntas frecuentes
+            </h2>
+          </FadeIn>
+
+          <div className="space-y-4">
+            {sportDetail.faqs.map((faq, idx) => (
               <FadeIn key={idx} delay={idx * 0.05}>
-                <div className="bg-white p-8 rounded-2xl border border-neutral-200">
-                  <h4 className="font-bold text-xl mb-3">{faq.q}</h4>
-                  <p className="text-neutral-600 leading-relaxed">{faq.a}</p>
+                <div className="bg-white rounded-2xl border border-neutral-200 overflow-hidden">
+                  <button
+                    onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                    className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-neutral-50 transition-colors"
+                  >
+                    <span className="text-lg font-bold pr-4">{faq.q}</span>
+                    <ChevronDown
+                      size={24}
+                      className={`shrink-0 transition-transform ${
+                        openFaq === idx ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  {openFaq === idx && (
+                    <div className="px-8 pb-6">
+                      <p className="text-neutral-600 leading-relaxed">{faq.a}</p>
+                    </div>
+                  )}
                 </div>
               </FadeIn>
             ))}
@@ -492,28 +494,19 @@ export default function ProtoSportDetail() {
         </div>
       </section>
 
-      {/* 🔟 CTA FINAL */}
-      <section className="py-32 px-6 bg-black text-white text-center">
-        <div className="max-w-3xl mx-auto">
+      <section className="py-24 px-6 bg-black text-white">
+        <div className="max-w-4xl mx-auto text-center">
           <FadeIn>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tight">
-              Empieza hoy
-            </h2>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <p className="text-xl text-neutral-400 mb-12 leading-relaxed">
-              Reserva tu primera sesión de {sport.name} en cualquiera de nuestros centros.
+            <h2 className="text-4xl md:text-5xl font-black mb-6">Empieza hoy</h2>
+            <p className="text-xl text-neutral-400 mb-10">
+              Reserva tu primera sesión de {sportDetail.name.toLowerCase()} y descubre por qué es diferente en Heartbeat.
             </p>
-          </FadeIn>
-
-          <FadeIn delay={0.3}>
-            <a
-              href="#centros"
-              className="inline-block bg-white text-black px-12 py-5 rounded-xl font-bold uppercase tracking-widest hover:bg-neutral-200 transition-colors"
+            <Link
+              to="/prototype/reservar"
+              className="inline-block bg-white text-black px-12 py-5 rounded-full font-bold uppercase tracking-wider text-sm hover:bg-neutral-200 transition-colors"
             >
               Ver disponibilidad
-            </a>
+            </Link>
           </FadeIn>
         </div>
       </section>
