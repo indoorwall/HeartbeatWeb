@@ -17,6 +17,8 @@ import ProtoStories from './prototype/pages/ProtoStories.tsx';
 import ProtoAgenda from './prototype/pages/ProtoAgenda.tsx';
 import ProtoCentros from './prototype/pages/ProtoCentros';
 import ProtoCentroDetail from './prototype/pages/ProtoCentroDetail';
+import ProtoInvertir from './prototype/pages/ProtoInvertir';
+import ProtoInvertirDetail from './prototype/pages/ProtoInvertirDetail';
 
 // MAGAZINE IMPORTS
 import MagazineLayout from './prototype/magazine/MagazineLayout';
@@ -65,6 +67,9 @@ function App() {
 
           <Route path="centros" element={<ProtoCentros />} />
           <Route path="centros/:slug" element={<ProtoCentroDetail />} />
+
+          <Route path="invertir" element={<ProtoInvertir />} />
+          <Route path="invertir/:slug" element={<ProtoInvertirDetail />} />
 
           <Route path="deportes" element={<ProtoSportsList />} />
           <Route path="deportes/:id" element={<ProtoSportPage />} />
