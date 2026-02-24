@@ -159,8 +159,8 @@ export const SPORTS_PAGES_CONTENT: Record<string, SportPageContent> = {
   },
 
   // --- ESCALADA ---
-  climbing: {
-    id: 'climbing',
+  escalada: {
+    id: 'escalada',
     seo: {
       title: 'Escalada y Bouldering | Heartbeat Climbing',
       desc: 'Muros de competición y roca real. Entrena fuerza y mente resolviendo problemas verticales.',
@@ -219,8 +219,8 @@ export const SPORTS_PAGES_CONTENT: Record<string, SportPageContent> = {
   },
 
   // --- SIMULADORES ---
-  simulators: {
-    id: 'simulators',
+  simuladores: {
+    id: 'simuladores',
     seo: {
       title: 'Sim Racing & E-Sports | Heartbeat Tech',
       desc: 'Entrena como un piloto profesional. Simuladores con movimiento real y telemetría avanzada.',
