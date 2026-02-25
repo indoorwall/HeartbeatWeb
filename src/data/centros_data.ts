@@ -39,6 +39,12 @@ export interface CentroGallery {
   category: 'sala' | 'zona-deporte' | 'exterior' | 'social' | 'arquitectura' | 'comunidad';
 }
 
+export interface TechFeature {
+  title: string;
+  description: string;
+  icon: string;
+}
+
 export interface Centro {
   id: string;
   slug: string;
@@ -55,6 +61,7 @@ export interface Centro {
   services: SportService[];
   schedules: Schedule[];
   projectSlug?: string;
+  techFeatures?: TechFeature[];
 }
 
 export interface ProximoCentro {
@@ -300,6 +307,28 @@ export const CENTROS_ACTIVOS: Centro[] = [
         ],
       },
     ],
+    techFeatures: [
+      {
+        title: "Identificación automática",
+        description: "La pulsera te identifica al entrar. No necesitas tarjeta ni móvil.",
+        icon: "watch"
+      },
+      {
+        title: "Adaptación del entrenamiento",
+        description: "La IA analiza tu estado de recuperación y ajusta la intensidad recomendada.",
+        icon: "brain"
+      },
+      {
+        title: "Recomendación personalizada",
+        description: "Si vienes fatigado, te sugiere técnica. Si estás fuerte, intensidad.",
+        icon: "activity"
+      },
+      {
+        title: "Seguimiento de recuperación",
+        description: "El sistema monitoriza tu esfuerzo y optimiza tu descanso entre sesiones.",
+        icon: "heart"
+      }
+    ]
   },
   {
     id: 'vilanova',
@@ -319,6 +348,28 @@ export const CENTROS_ACTIVOS: Centro[] = [
     gallery: [],
     services: [],
     schedules: [],
+    techFeatures: [
+      {
+        title: "Identificación automática",
+        description: "La pulsera te identifica al entrar. No necesitas tarjeta ni móvil.",
+        icon: "watch"
+      },
+      {
+        title: "Adaptación del entrenamiento",
+        description: "La IA analiza tu estado de recuperación y ajusta la intensidad recomendada.",
+        icon: "brain"
+      },
+      {
+        title: "Recomendación personalizada",
+        description: "Sugerencias personalizadas según tu estado físico y objetivos.",
+        icon: "activity"
+      },
+      {
+        title: "Seguimiento de recuperación",
+        description: "El sistema monitoriza tu esfuerzo y optimiza tu descanso entre sesiones.",
+        icon: "heart"
+      }
+    ]
   },
   {
     id: 'miches',
@@ -538,6 +589,28 @@ export const CENTROS_ACTIVOS: Centro[] = [
         ],
       },
     ],
+    techFeatures: [
+      {
+        title: "Identificación automática",
+        description: "La pulsera te identifica al entrar. No necesitas tarjeta ni móvil.",
+        icon: "watch"
+      },
+      {
+        title: "Adaptación del entrenamiento",
+        description: "La IA analiza tu estado de recuperación y ajusta la intensidad recomendada.",
+        icon: "brain"
+      },
+      {
+        title: "Recomendación personalizada",
+        description: "Sugerencias personalizadas según tu estado físico y objetivos.",
+        icon: "activity"
+      },
+      {
+        title: "Seguimiento de recuperación",
+        description: "El sistema monitoriza tu esfuerzo y optimiza tu descanso entre sesiones.",
+        icon: "heart"
+      }
+    ]
   },
   {
     id: 'asturias',
@@ -558,6 +631,28 @@ export const CENTROS_ACTIVOS: Centro[] = [
     gallery: [],
     services: [],
     schedules: [],
+    techFeatures: [
+      {
+        title: "Identificación automática",
+        description: "La pulsera te identifica al entrar. No necesitas tarjeta ni móvil.",
+        icon: "watch"
+      },
+      {
+        title: "Adaptación del entrenamiento",
+        description: "La IA analiza tu estado de recuperación y ajusta la intensidad recomendada.",
+        icon: "brain"
+      },
+      {
+        title: "Recomendación personalizada",
+        description: "Sugerencias personalizadas según tu estado físico y objetivos.",
+        icon: "activity"
+      },
+      {
+        title: "Seguimiento de recuperación",
+        description: "El sistema monitoriza tu esfuerzo y optimiza tu descanso entre sesiones.",
+        icon: "heart"
+      }
+    ]
   },
 ];
 

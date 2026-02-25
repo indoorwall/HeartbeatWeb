@@ -93,9 +93,54 @@ export default function ProtoHome() {
               <Link to="/prototype/reservar" className="bg-gradient-to-r from-brand-start to-brand-end text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-brand-start/20 text-center">
                 {HOME_CONTENT.hero.ctaPrimary}
               </Link>
-              <Link to="/prototype/ecosistema" className="bg-transparent border border-white text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-colors text-center">
+              <Link to="/prototype/que-es-heartbeat" className="bg-transparent border border-white text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-colors text-center">
                 {HOME_CONTENT.hero.ctaSecondary}
               </Link>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* 1.5) EL SISTEMA - Núcleo Tecnológico */}
+      <section className="py-32 md:py-48 px-6 bg-neutral-900 text-white">
+        <div className="max-w-6xl mx-auto">
+          <FadeIn className="text-center mb-20">
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-6">
+              {HOME_CONTENT.systemCore.title}
+            </h2>
+            <p className="text-xl md:text-2xl text-neutral-400 max-w-3xl mx-auto">
+              {HOME_CONTENT.systemCore.subtitle}
+            </p>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+            {HOME_CONTENT.systemCore.steps.map((step, idx) => (
+              <FadeIn key={idx} delay={idx * 0.15}>
+                <div className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors min-h-[300px] flex flex-col">
+                  <div className="w-16 h-16 bg-gradient-to-br from-brand-start to-brand-end rounded-2xl flex items-center justify-center mb-6">
+                    <step.icon size={32} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
+                  <p className="text-neutral-400 leading-relaxed flex-1">{step.description}</p>
+                  <div className="mt-6 w-12 h-1 bg-gradient-to-r from-brand-start to-brand-end rounded-full" />
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.6}>
+            <div className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden">
+              <img
+                src={HOME_CONTENT.systemCore.image}
+                alt="Sistema Heartbeat"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-10 text-center">
+                <p className="text-2xl md:text-3xl font-bold">
+                  Todo tiene un propósito: <span className="text-brand-end">Dormir mejor para vivir mejor</span>
+                </p>
+              </div>
             </div>
           </FadeIn>
         </div>
@@ -200,28 +245,36 @@ export default function ProtoHome() {
         </div>
       </section>
 
-      {/* 5) TIPOS DE HEARTBEAT - Ritmo Visual */}
+      {/* 5) MANIFESTACIONES FÍSICAS - Espacios Conectados */}
       <section className="py-24 md:py-40 px-6 max-w-[1400px] mx-auto">
         <FadeIn>
-          <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-20 md:mb-28 text-center">EL ECOSISTEMA HEARTBEAT</h2> {/* CAMBIO */}
+          <div className="text-center mb-20 md:mb-28">
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-6">
+              {HOME_CONTENT.physicalManifestations.title}
+            </h2>
+            <p className="text-xl md:text-2xl text-neutral-600 max-w-3xl mx-auto">
+              {HOME_CONTENT.physicalManifestations.subtitle}
+            </p>
+          </div>
         </FadeIn>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {HOME_CONTENT.heartbeatTypes.map((type, idx) => (
-            <BreathingCard 
-              key={idx} 
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {HOME_CONTENT.physicalManifestations.items.map((item, idx) => (
+            <BreathingCard
+              key={item.id}
+              to={item.path}
               delay={idx * 0.1}
-              className={`p-10 rounded-3xl border flex flex-col items-center text-center gap-6 transition-all min-h-[300px] justify-center ${
-                type.disabled 
-                  ? "bg-neutral-50 border-neutral-100 opacity-50 cursor-not-allowed" 
-                  : "bg-white border-neutral-200 hover:border-black"
-              }`}
             >
-              <div className="w-20 h-20 bg-neutral-50 rounded-full flex items-center justify-center mb-2">
-                <type.icon size={32} className="text-neutral-900" strokeWidth={1.5} />
-              </div>
-              <div>
-                <h3 className="font-bold text-2xl leading-tight mb-3">{type.title}</h3>
-                <p className="text-sm text-neutral-500 font-medium">{type.desc}</p>
+              <div className="bg-white p-10 rounded-3xl border border-neutral-200 hover:border-black transition-all min-h-[320px] flex flex-col justify-between">
+                <div>
+                  <div className="w-16 h-16 bg-gradient-to-br from-brand-start to-brand-end rounded-2xl flex items-center justify-center mb-6">
+                    <item.icon size={28} className="text-white" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="font-bold text-2xl leading-tight mb-4">{item.title}</h3>
+                  <p className="text-base text-neutral-600 leading-relaxed">{item.desc}</p>
+                </div>
+                <div className="mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                  Explorar <ArrowRight size={16} />
+                </div>
               </div>
             </BreathingCard>
           ))}

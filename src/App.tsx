@@ -32,6 +32,7 @@ import ProtoAlimentacion from './prototype/pages/ProtoAlimentacion';
 import ProtoAlimentacionDetail from './prototype/pages/ProtoAlimentacionDetail';
 import ProtoReservar from './prototype/pages/ProtoReservar';
 import ProtoQueEs from './prototype/pages/ProtoQueEs';
+import ProtoTecnologia from './prototype/pages/ProtoTecnologia';
 
 // MAGAZINE IMPORTS
 import MagazineLayout from './prototype/magazine/MagazineLayout';
@@ -112,6 +113,7 @@ function App() {
           <Route path="eventos" element={<ProtoAgenda />} />
           <Route path="reservar" element={<ProtoReservar />} />
           <Route path="que-es-heartbeat" element={<ProtoQueEs />} />
+          <Route path="tecnologia" element={<ProtoTecnologia />} />
 
           <Route path="*" element={<div className="p-10">Página en construcción (Wireframe)</div>} />
         </Route>

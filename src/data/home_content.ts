@@ -1,12 +1,40 @@
-import { Activity, MapPin, Heart, Zap, Leaf, Coffee, Cpu, Building, Trees, ShoppingBag, Dumbbell } from "lucide-react";
+import { Activity, MapPin, Heart, Zap, Leaf, Coffee, Cpu, Building, Trees, ShoppingBag, Dumbbell, Watch, Brain, Home as HomeIcon } from "lucide-react";
 
 // REBRAND: Heartbeat (Sin Planet)
 export const HOME_CONTENT = {
   hero: {
     h1: "HEARTBEAT.",
-    subclaim: "Tu alma tecnológica. Una interfaz viva para elevar tu consciencia a través del movimiento.",
+    subclaim: "Un sistema inteligente que mide, interpreta y adapta tu entorno para que duermas mejor.",
     ctaPrimary: "Reservar",
-    ctaSecondary: "Explorar el alma"
+    ctaSecondary: "Conocer el sistema"
+  },
+
+  systemCore: {
+    title: "El sistema",
+    subtitle: "Tecnología invisible que conecta tu cuerpo con el espacio",
+    steps: [
+      {
+        icon: Watch,
+        title: "La pulsera mide",
+        description: "Monitoriza tu actividad, recuperación, estrés y patrones de sueño en tiempo real."
+      },
+      {
+        icon: Brain,
+        title: "La IA interpreta",
+        description: "Analiza tus datos y comprende qué necesitas en cada momento del día."
+      },
+      {
+        icon: HomeIcon,
+        title: "El entorno responde",
+        description: "Centros, hoteles, restaurantes y tu hogar se adaptan automáticamente a tu estado."
+      },
+      {
+        icon: Heart,
+        title: "Duermes mejor",
+        description: "Todo el sistema trabaja para optimizar tu descanso y recuperación."
+      }
+    ],
+    image: "https://images.unsplash.com/photo-1544257116-c11aed8f5b43?auto=format&fit=crop&q=80"
   },
   quickAccess: [
     {
@@ -46,6 +74,19 @@ export const HOME_CONTENT = {
     { name: "Crossfit", phrase: "Potencia vital.", id: "crossfit" },
     { name: "Skate", phrase: "Creatividad urbana.", id: "skate" }
   ],
+  physicalManifestations: {
+    title: "Manifestaciones físicas del sistema",
+    subtitle: "Espacios donde la tecnología se materializa",
+    items: [
+      { title: "Centros Multideportivos", desc: "Tu entrenamiento se adapta según tu estado de recuperación.", icon: Activity, id: "multisport", path: "/prototype/centros" },
+      { title: "Hoteles Conectados", desc: "Tu habitación responde a tus necesidades de descanso.", icon: Building, id: "hotels", path: "/prototype/alojamiento/hoteles" },
+      { title: "Restaurantes KM0", desc: "La IA sugiere qué comer según tu gasto energético.", icon: Coffee, id: "km0", path: "/prototype/alimentacion" },
+      { title: "Life Reserve & Resort", desc: "Territorios completos conectados al sistema.", icon: Trees, id: "life", path: "/prototype/heartbeat-life" },
+      { title: "Heartbeat Home", desc: "Tu hogar automatizado según tus ritmos biológicos.", icon: HomeIcon, id: "home", path: "/prototype/alojamiento/home" },
+      { title: "Urban Hubs", desc: "Regeneración urbana con tecnología integrada.", icon: MapPin, id: "urban", path: "/prototype/ecosistema/urban" }
+    ]
+  },
+
   heartbeatTypes: [
     { title: "Life", desc: "Santuarios y Resorts regenerativos.", icon: Trees, id: "life" },
     { title: "Centros Multideportivos", desc: "Reactores de energía.", icon: Activity, id: "multisport" },

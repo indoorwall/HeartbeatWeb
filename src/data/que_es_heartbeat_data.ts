@@ -10,7 +10,7 @@ export const QUE_ES_HEARTBEAT_DATA = {
   },
 
   essence: {
-    text: "Heartbeat es un modelo de desarrollo que integra centros deportivos, alojamiento, alimentación, regeneración urbana y tecnología en un mismo territorio."
+    text: "Heartbeat es un sistema tecnológico que integra una pulsera, inteligencia artificial y espacios físicos (centros, hoteles, restaurantes, hogares) para optimizar tu descanso y rendimiento."
   },
 
   whatIsNot: [
@@ -24,12 +24,13 @@ export const QUE_ES_HEARTBEAT_DATA = {
   layers: {
     nucleus: {
       title: "NÚCLEO",
-      item: "Centro multideportivo",
-      icon: Activity
+      item: "Pulsera + IA",
+      icon: Cpu
     },
     verticals: {
-      title: "CAPAS",
+      title: "MANIFESTACIONES FÍSICAS",
       items: [
+        { name: "Centros deportivos", icon: Activity },
         { name: "Alojamiento", icon: Home },
         { name: "Alimentación", icon: Coffee },
         { name: "Urban / regeneración", icon: MapPin },
@@ -37,10 +38,10 @@ export const QUE_ES_HEARTBEAT_DATA = {
       ]
     },
     transversal: {
-      title: "CAPA TRANSVERSAL",
-      item: "Tecnología",
-      icon: Cpu,
-      description: "La tecnología conecta seguimiento del rendimiento, gestión energética, datos de bienestar y la conexión entre centros, alojamiento y usuario."
+      title: "OBJETIVO",
+      item: "Dormir mejor",
+      icon: Zap,
+      description: "La pulsera mide, la IA interpreta, el entorno responde y tú duermes mejor. Todo el sistema trabaja con un propósito claro."
     }
   },
 

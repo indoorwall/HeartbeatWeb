@@ -394,6 +394,42 @@ export default function ProtoCentroDetail() {
         </section>
       )}
 
+      {centro.techFeatures && centro.techFeatures.length > 0 && (
+        <section className="py-20 px-6 bg-neutral-900 text-white">
+          <div className="max-w-6xl mx-auto">
+            <FadeIn>
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-black mb-6">
+                  Tecnología aplicada en este centro
+                </h2>
+                <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
+                  La pulsera y la IA trabajan juntas para optimizar tu experiencia
+                </p>
+              </div>
+            </FadeIn>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {centro.techFeatures.map((feature, idx) => (
+                <FadeIn key={idx} delay={idx * 0.1}>
+                  <div className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors">
+                    <div className="w-16 h-16 bg-gradient-to-br from-brand-start to-brand-end rounded-2xl flex items-center justify-center mb-6">
+                      {feature.icon === 'watch' && <span className="text-3xl">⌚</span>}
+                      {feature.icon === 'brain' && <span className="text-3xl">🧠</span>}
+                      {feature.icon === 'activity' && <span className="text-3xl">⚡</span>}
+                      {feature.icon === 'heart' && <span className="text-3xl">❤️</span>}
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
+                    <p className="text-neutral-400 leading-relaxed text-lg">
+                      {feature.description}
+                    </p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {centro.services.length > 0 && (
         <section className="py-20 px-6 bg-neutral-50">
           <div className="max-w-6xl mx-auto">
