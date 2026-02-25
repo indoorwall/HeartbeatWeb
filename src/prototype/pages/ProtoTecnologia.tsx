@@ -50,7 +50,7 @@ export default function ProtoTecnologia() {
         </div>
       </section>
 
-      <section className="py-32 px-6 bg-white">
+      <section className="py-32 px-6 bg-gradient-to-b from-white via-neutral-100 to-neutral-50">
         <div className="max-w-4xl mx-auto text-center">
           <FadeIn>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-12 text-neutral-900">
