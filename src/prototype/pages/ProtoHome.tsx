@@ -101,45 +101,142 @@ export default function ProtoHome() {
         </div>
       </section>
 
-      {/* 1.5) EL SISTEMA - Núcleo Tecnológico */}
-      <section className="py-32 md:py-48 px-6 bg-neutral-900 text-white">
-        <div className="max-w-6xl mx-auto">
+      {/* 1.5) EL SISTEMA - Núcleo Tecnológico REDISEÑADO */}
+      <section className="relative py-32 md:py-48 px-6 bg-black text-white overflow-hidden">
+        {/* Grid background tech */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }} />
+        </div>
+
+        {/* Glowing orbs */}
+        <div className="absolute top-20 left-10 w-96 h-96 bg-brand-start/20 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-end/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <FadeIn className="text-center mb-20">
-            <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-6">
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-brand-start/20 to-brand-end/20 backdrop-blur-sm rounded-full border border-brand-start/30 mb-8">
+              <div className="w-2 h-2 bg-brand-start rounded-full animate-pulse" />
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-brand-start">Sistema activo</span>
+              <div className="w-2 h-2 bg-brand-end rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+            </div>
+            <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 bg-gradient-to-r from-white via-brand-start to-brand-end bg-clip-text text-transparent">
               {HOME_CONTENT.systemCore.title}
             </h2>
-            <p className="text-xl md:text-2xl text-neutral-400 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-neutral-400 max-w-3xl mx-auto font-light">
               {HOME_CONTENT.systemCore.subtitle}
             </p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-            {HOME_CONTENT.systemCore.steps.map((step, idx) => (
-              <FadeIn key={idx} delay={idx * 0.15}>
-                <div className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors min-h-[300px] flex flex-col">
-                  <div className="w-16 h-16 bg-gradient-to-br from-brand-start to-brand-end rounded-2xl flex items-center justify-center mb-6">
-                    <step.icon size={32} strokeWidth={1.5} />
+          {/* Flow diagram style */}
+          <div className="relative max-w-6xl mx-auto mb-24">
+            <div className="grid md:grid-cols-4 gap-6">
+              {HOME_CONTENT.systemCore.steps.map((step, idx) => (
+                <FadeIn key={idx} delay={idx * 0.15}>
+                  <div className="relative group">
+                    {/* Connection line */}
+                    {idx < HOME_CONTENT.systemCore.steps.length - 1 && (
+                      <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-brand-start to-brand-end z-0">
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-brand-end rounded-full animate-pulse" style={{ animationDelay: `${idx * 0.3}s` }} />
+                      </div>
+                    )}
+
+                    <div className="relative bg-gradient-to-br from-neutral-900 to-black p-8 rounded-3xl border border-white/10 hover:border-brand-start/50 transition-all min-h-[340px] flex flex-col group-hover:scale-105 duration-500">
+                      {/* Tech corner detail */}
+                      <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-brand-start/30 rounded-tl-3xl" />
+                      <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-brand-end/30 rounded-br-3xl" />
+
+                      {/* Step number */}
+                      <div className="absolute -top-4 -right-4 w-10 h-10 bg-gradient-to-br from-brand-start to-brand-end rounded-full flex items-center justify-center font-black text-lg shadow-lg shadow-brand-start/50">
+                        {idx + 1}
+                      </div>
+
+                      <div className="relative z-10">
+                        <div className="w-20 h-20 bg-gradient-to-br from-brand-start to-brand-end rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-brand-start/50">
+                          <step.icon size={36} strokeWidth={2} className="text-white" />
+                        </div>
+                        <h3 className="text-2xl font-black mb-4 bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-transparent">
+                          {step.title}
+                        </h3>
+                        <p className="text-neutral-500 leading-relaxed flex-1 text-sm">
+                          {step.description}
+                        </p>
+                        <div className="mt-6 h-1 bg-gradient-to-r from-brand-start to-brand-end rounded-full opacity-50 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
-                  <p className="text-neutral-400 leading-relaxed flex-1">{step.description}</p>
-                  <div className="mt-6 w-12 h-1 bg-gradient-to-r from-brand-start to-brand-end rounded-full" />
-                </div>
-              </FadeIn>
-            ))}
+                </FadeIn>
+              ))}
+            </div>
           </div>
 
+          {/* Tech visual with data overlay */}
           <FadeIn delay={0.6}>
-            <div className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden">
+            <div className="relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden border border-white/10">
               <img
                 src={HOME_CONTENT.systemCore.image}
                 alt="Sistema Heartbeat"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover opacity-40"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+
+              {/* Tech overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+
+              {/* Floating data points */}
+              <div className="absolute top-10 left-10 bg-black/60 backdrop-blur-md px-6 py-4 rounded-2xl border border-brand-start/30 animate-pulse">
+                <div className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Frecuencia cardíaca</div>
+                <div className="text-3xl font-black text-brand-start">72 <span className="text-sm">BPM</span></div>
+              </div>
+
+              <div className="absolute top-10 right-10 bg-black/60 backdrop-blur-md px-6 py-4 rounded-2xl border border-brand-end/30 animate-pulse" style={{ animationDelay: '0.5s' }}>
+                <div className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Recuperación</div>
+                <div className="text-3xl font-black text-brand-end">87<span className="text-sm">%</span></div>
+              </div>
+
+              <div className="absolute bottom-32 left-10 bg-black/60 backdrop-blur-md px-6 py-4 rounded-2xl border border-green-500/30 animate-pulse" style={{ animationDelay: '1s' }}>
+                <div className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Calidad sueño</div>
+                <div className="text-3xl font-black text-green-500">92<span className="text-sm">%</span></div>
+              </div>
+
+              <div className="absolute bottom-32 right-10 bg-black/60 backdrop-blur-md px-6 py-4 rounded-2xl border border-purple-500/30 animate-pulse" style={{ animationDelay: '1.5s' }}>
+                <div className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Estado actual</div>
+                <div className="text-2xl font-black text-purple-500">Óptimo</div>
+              </div>
+
+              {/* Central message */}
               <div className="absolute bottom-0 left-0 right-0 p-10 text-center">
-                <p className="text-2xl md:text-3xl font-bold">
-                  Todo tiene un propósito: <span className="text-brand-end">Dormir mejor para vivir mejor</span>
-                </p>
+                <div className="bg-black/80 backdrop-blur-md px-10 py-6 rounded-2xl border border-white/10 inline-block">
+                  <p className="text-xl md:text-3xl font-black">
+                    Todo tiene un propósito: <span className="bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent">Dormir mejor para vivir mejor</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Tech stats bar */}
+          <FadeIn delay={0.8}>
+            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="bg-gradient-to-br from-neutral-900 to-black p-6 rounded-2xl border border-white/10 text-center">
+                <div className="text-4xl font-black text-brand-start mb-2">24/7</div>
+                <div className="text-sm text-neutral-500 uppercase tracking-wider">Monitorización</div>
+              </div>
+              <div className="bg-gradient-to-br from-neutral-900 to-black p-6 rounded-2xl border border-white/10 text-center">
+                <div className="text-4xl font-black text-brand-end mb-2">Real-time</div>
+                <div className="text-sm text-neutral-500 uppercase tracking-wider">Adaptación</div>
+              </div>
+              <div className="bg-gradient-to-br from-neutral-900 to-black p-6 rounded-2xl border border-white/10 text-center">
+                <div className="text-4xl font-black text-green-500 mb-2">100%</div>
+                <div className="text-sm text-neutral-500 uppercase tracking-wider">Automatizado</div>
+              </div>
+              <div className="bg-gradient-to-br from-neutral-900 to-black p-6 rounded-2xl border border-white/10 text-center">
+                <div className="text-4xl font-black text-purple-500 mb-2">∞</div>
+                <div className="text-sm text-neutral-500 uppercase tracking-wider">Integración</div>
               </div>
             </div>
           </FadeIn>
