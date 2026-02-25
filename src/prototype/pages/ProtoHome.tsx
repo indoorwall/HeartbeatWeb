@@ -231,7 +231,8 @@ export default function ProtoHome() {
       <PulseSeparator />
 
       {/* 2) ENTRADA RÁPIDA - Ritmo Pausado */}
-      <section className="py-24 md:py-40 px-6 max-w-[1400px] mx-auto">
+      <section className="py-24 md:py-40 px-6 bg-white">
+        <div className="max-w-[1400px] mx-auto">
         <div className="grid md:grid-cols-3 gap-8 md:gap-12">
           {HOME_CONTENT.quickAccess.map((card, idx) => (
             <BreathingCard 
@@ -250,6 +251,7 @@ export default function ProtoHome() {
               </div>
             </BreathingCard>
           ))}
+        </div>
         </div>
       </section>
 
