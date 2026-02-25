@@ -102,7 +102,7 @@ export default function ProtoHome() {
       </section>
 
       {/* 1.5) EL SISTEMA - Núcleo Tecnológico */}
-      <section className="py-32 md:py-48 px-6 bg-white">
+      <section className="py-24 md:py-32 px-6 bg-white">
         <div className="max-w-[1400px] mx-auto">
           <FadeIn className="text-center mb-20">
             <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-brand-start/10 to-brand-end/10 rounded-full border border-brand-start/20 mb-8">
@@ -228,11 +228,17 @@ export default function ProtoHome() {
         </div>
       </section>
 
-      <PulseSeparator />
-
       {/* 2) ENTRADA RÁPIDA - Ritmo Pausado */}
-      <section className="py-24 md:py-40 px-6 bg-white">
+      <section className="py-20 md:py-32 px-6 bg-gradient-to-b from-white to-neutral-50">
         <div className="max-w-[1400px] mx-auto">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-4">
+              Comienza tu experiencia
+            </h2>
+            <p className="text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto">
+              Tres caminos para entrar al sistema
+            </p>
+          </FadeIn>
         <div className="grid md:grid-cols-3 gap-8 md:gap-12">
           {HOME_CONTENT.quickAccess.map((card, idx) => (
             <BreathingCard 
