@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Calendar, Home, TrendingUp, Search } from 'lucide-react';
 import { CENTROS_ACTIVOS, PROXIMOS_CENTROS, SPORTS_CATALOG } from '../../data/centros_data';
+import InfoCards from '../../components/InfoCards';
 
 export default function ProtoCentros() {
   const [searchCity, setSearchCity] = React.useState('');
@@ -259,6 +260,8 @@ export default function ProtoCentros() {
               </Link>
             ))}
           </div>
+
+          <InfoCards />
         </div>
       </section>
 

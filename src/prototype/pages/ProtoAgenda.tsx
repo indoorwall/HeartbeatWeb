@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { AGENDA_DATA } from '../../data/agenda_data';
-import { HEARTBEAT_TYPES } from '../../data/heartbeat_types_data'; // Importar tipos
+import { HEARTBEAT_TYPES } from '../../data/heartbeat_types_data';
 import { Calendar, MapPin, Filter, ArrowRight } from 'lucide-react';
 import FadeIn from '../../components/animations/FadeIn';
+import InfoCards from '../../components/InfoCards';
 
 export default function ProtoAgenda() {
   const [filterCity, setFilterCity] = useState('Todas');
@@ -143,6 +144,10 @@ export default function ProtoAgenda() {
             </button>
           </div>
         )}
+
+        <div className="max-w-[1400px] mx-auto px-6">
+          <InfoCards />
+        </div>
       </section>
     </div>
   );

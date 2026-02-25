@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, ArrowLeft, Bed, Calendar } from 'lucide-react';
 import { HOMES, getHomesByRentalType, type RentalType } from '../../data/alojamiento_data';
+import InfoCards from '../../components/InfoCards';
 
 export default function ProtoAlojamientoHome() {
   const [selectedRentalType, setSelectedRentalType] = React.useState<RentalType | 'Todos'>('Todos');
@@ -227,6 +228,8 @@ export default function ProtoAlojamientoHome() {
               </button>
             </div>
           )}
+
+          <InfoCards />
         </div>
       </section>
 

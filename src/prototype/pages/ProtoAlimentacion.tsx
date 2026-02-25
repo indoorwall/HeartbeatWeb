@@ -7,6 +7,7 @@ import {
   ECOSYSTEM_INTEGRATION,
   filterFoodSpaces,
 } from '../../data/alimentacion_data';
+import InfoCards from '../../components/InfoCards';
 
 export default function ProtoAlimentacion() {
   const [selectedType, setSelectedType] = React.useState<'Restaurante' | 'Supermercado' | ''>('');
@@ -267,6 +268,8 @@ export default function ProtoAlimentacion() {
               </button>
             </div>
           )}
+
+          <InfoCards />
         </div>
       </section>
 

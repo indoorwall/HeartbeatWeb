@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mountain, Sparkles, ArrowRight } from 'lucide-react';
+import InfoCards from '../../components/InfoCards';
 
 export default function ProtoHeartbeatLife() {
   return (
@@ -143,6 +144,8 @@ export default function ProtoHeartbeatLife() {
               </div>
             </div>
           </div>
+
+          <InfoCards />
         </div>
       </section>
 
