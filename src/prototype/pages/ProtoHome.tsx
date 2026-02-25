@@ -352,6 +352,30 @@ export default function ProtoHome() {
         </div>
       </section>
 
+      {/* 9.5) QUÉ ES HEARTBEAT - Bloque Estructural */}
+      <section className="py-24 md:py-32 px-6 bg-neutral-50">
+        <div className="max-w-4xl mx-auto">
+          <FadeIn>
+            <div className="bg-white p-12 md:p-16 rounded-3xl border border-neutral-200">
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-6 text-center">
+                Qué es Heartbeat
+              </h2>
+              <p className="text-xl text-neutral-600 text-center mb-10 leading-relaxed">
+                Un modelo replicable que integra deporte, territorio, tecnología y comunidad en un mismo ecosistema.
+              </p>
+              <div className="text-center">
+                <Link
+                  to="/prototype/que-es-heartbeat"
+                  className="inline-flex items-center gap-3 bg-black text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-neutral-800 transition-colors"
+                >
+                  Descubrir el modelo <ArrowRight size={20} />
+                </Link>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* 10) NEWSLETTER - Cierre con Textura */}
       <section className="relative py-32 md:py-48 bg-black text-white px-6 overflow-hidden">
         <div className="absolute inset-0 opacity-20">

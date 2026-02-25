@@ -8,7 +8,8 @@ export const FOOTER_CONTENT = {
         { label: "Disciplinas", path: "/prototype/deportes" },
         { label: "Templos", path: "/prototype/lugares" },
         { label: "Rituales", path: "/prototype/agenda" },
-        { label: "Ecosistema", path: "/prototype/ecosistema" } // CONFIRMADO: Ecosistema
+        { label: "Ecosistema", path: "/prototype/ecosistema" }, // CONFIRMADO: Ecosistema
+        { label: "Qué es Heartbeat", path: "/prototype/que-es-heartbeat" }
       ]
     },
     {
