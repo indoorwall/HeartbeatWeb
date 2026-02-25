@@ -162,40 +162,40 @@ export default function ProtoHome() {
 
           {/* Visual principal con overlays de datos */}
           <FadeIn delay={0.6}>
-            <div className="relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden border border-neutral-200 shadow-2xl">
+            <div className="relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-50 shadow-2xl">
               <img
                 src={HOME_CONTENT.systemCore.image}
                 alt="Sistema Heartbeat"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover opacity-30 mix-blend-multiply"
               />
 
-              {/* Overlay gradiente sutil */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              {/* Overlay suave para mejor legibilidad */}
+              <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/40 to-transparent" />
 
               {/* Data cards flotantes */}
-              <div className="absolute top-10 left-10 bg-white/95 backdrop-blur-sm px-6 py-4 rounded-2xl border border-neutral-200 shadow-lg animate-pulse">
-                <div className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Frecuencia cardíaca</div>
-                <div className="text-3xl font-black bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent">72 <span className="text-sm text-neutral-400">BPM</span></div>
+              <div className="absolute top-10 left-10 bg-white backdrop-blur-sm px-6 py-4 rounded-2xl border border-neutral-300 shadow-xl animate-pulse">
+                <div className="text-xs text-neutral-600 font-bold uppercase tracking-wider mb-1">Frecuencia cardíaca</div>
+                <div className="text-3xl font-black bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent">72 <span className="text-sm text-neutral-500">BPM</span></div>
               </div>
 
-              <div className="absolute top-10 right-10 bg-white/95 backdrop-blur-sm px-6 py-4 rounded-2xl border border-neutral-200 shadow-lg animate-pulse" style={{ animationDelay: '0.5s' }}>
-                <div className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Recuperación</div>
-                <div className="text-3xl font-black bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent">87<span className="text-sm text-neutral-400">%</span></div>
+              <div className="absolute top-10 right-10 bg-white backdrop-blur-sm px-6 py-4 rounded-2xl border border-neutral-300 shadow-xl animate-pulse" style={{ animationDelay: '0.5s' }}>
+                <div className="text-xs text-neutral-600 font-bold uppercase tracking-wider mb-1">Recuperación</div>
+                <div className="text-3xl font-black bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent">87<span className="text-sm text-neutral-500">%</span></div>
               </div>
 
-              <div className="absolute bottom-32 left-10 bg-white/95 backdrop-blur-sm px-6 py-4 rounded-2xl border border-neutral-200 shadow-lg animate-pulse" style={{ animationDelay: '1s' }}>
-                <div className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Calidad sueño</div>
-                <div className="text-3xl font-black text-green-600">92<span className="text-sm text-neutral-400">%</span></div>
+              <div className="absolute bottom-32 left-10 bg-white backdrop-blur-sm px-6 py-4 rounded-2xl border border-neutral-300 shadow-xl animate-pulse" style={{ animationDelay: '1s' }}>
+                <div className="text-xs text-neutral-600 font-bold uppercase tracking-wider mb-1">Calidad sueño</div>
+                <div className="text-3xl font-black text-green-600">92<span className="text-sm text-neutral-500">%</span></div>
               </div>
 
-              <div className="absolute bottom-32 right-10 bg-white/95 backdrop-blur-sm px-6 py-4 rounded-2xl border border-neutral-200 shadow-lg animate-pulse" style={{ animationDelay: '1.5s' }}>
-                <div className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Estado actual</div>
+              <div className="absolute bottom-32 right-10 bg-white backdrop-blur-sm px-6 py-4 rounded-2xl border border-neutral-300 shadow-xl animate-pulse" style={{ animationDelay: '1.5s' }}>
+                <div className="text-xs text-neutral-600 font-bold uppercase tracking-wider mb-1">Estado actual</div>
                 <div className="text-2xl font-black text-neutral-900">Óptimo</div>
               </div>
 
               {/* Mensaje central */}
               <div className="absolute bottom-0 left-0 right-0 p-10 text-center">
-                <div className="bg-white/95 backdrop-blur-sm px-10 py-6 rounded-2xl border border-neutral-200 inline-block shadow-xl">
+                <div className="bg-white backdrop-blur-sm px-10 py-6 rounded-2xl border border-neutral-300 inline-block shadow-xl">
                   <p className="text-xl md:text-3xl font-bold text-neutral-900">
                     Todo tiene un propósito: <span className="bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent">Dormir mejor para vivir mejor</span>
                   </p>
@@ -206,20 +206,20 @@ export default function ProtoHome() {
 
           {/* Barra de estadísticas tech */}
           <FadeIn delay={0.8}>
-            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="bg-gradient-to-br from-neutral-50 to-white p-8 rounded-2xl border border-neutral-200 text-center hover:shadow-xl transition-shadow">
+            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pb-16">
+              <div className="bg-white p-8 rounded-2xl border border-neutral-300 text-center hover:shadow-xl transition-shadow shadow-lg">
                 <div className="text-5xl font-black bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent mb-2">24/7</div>
                 <div className="text-sm text-neutral-600 font-bold uppercase tracking-wider">Monitorización</div>
               </div>
-              <div className="bg-gradient-to-br from-neutral-50 to-white p-8 rounded-2xl border border-neutral-200 text-center hover:shadow-xl transition-shadow">
+              <div className="bg-white p-8 rounded-2xl border border-neutral-300 text-center hover:shadow-xl transition-shadow shadow-lg">
                 <div className="text-4xl font-black bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent mb-2">Real-time</div>
                 <div className="text-sm text-neutral-600 font-bold uppercase tracking-wider">Adaptación</div>
               </div>
-              <div className="bg-gradient-to-br from-neutral-50 to-white p-8 rounded-2xl border border-neutral-200 text-center hover:shadow-xl transition-shadow">
+              <div className="bg-white p-8 rounded-2xl border border-neutral-300 text-center hover:shadow-xl transition-shadow shadow-lg">
                 <div className="text-5xl font-black text-green-600 mb-2">100%</div>
                 <div className="text-sm text-neutral-600 font-bold uppercase tracking-wider">Automatizado</div>
               </div>
-              <div className="bg-gradient-to-br from-neutral-50 to-white p-8 rounded-2xl border border-neutral-200 text-center hover:shadow-xl transition-shadow">
+              <div className="bg-white p-8 rounded-2xl border border-neutral-300 text-center hover:shadow-xl transition-shadow shadow-lg">
                 <div className="text-5xl font-black text-neutral-900 mb-2">∞</div>
                 <div className="text-sm text-neutral-600 font-bold uppercase tracking-wider">Integración</div>
               </div>
@@ -227,6 +227,8 @@ export default function ProtoHome() {
           </FadeIn>
         </div>
       </section>
+
+      <PulseSeparator />
 
       {/* 2) ENTRADA RÁPIDA - Ritmo Pausado */}
       <section className="py-24 md:py-40 px-6 max-w-[1400px] mx-auto">
