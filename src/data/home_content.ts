@@ -34,7 +34,7 @@ export const HOME_CONTENT = {
         description: "Todo el sistema trabaja para optimizar tu descanso y recuperación."
       }
     ],
-    image: "https://images.unsplash.com/photo-1544257116-c11aed8f5b43?auto=format&fit=crop&q=80"
+    image: "https://images.pexels.com/photos/6647035/pexels-photo-6647035.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
   },
   quickAccess: [
     {
