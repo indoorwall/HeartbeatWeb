@@ -283,6 +283,8 @@ export default function ProtoHome() {
         </div>
       </section>
 
+      <PulseSeparator />
+
       {/* 4) BUSCADOR UNIVERSAL - Sección "Isla" */}
       <section className="py-32 md:py-48 px-6 bg-black text-white">
         <div className="max-w-6xl mx-auto text-center">
