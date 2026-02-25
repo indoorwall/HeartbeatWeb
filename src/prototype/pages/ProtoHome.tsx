@@ -206,7 +206,7 @@ export default function ProtoHome() {
 
           {/* Barra de estadísticas tech */}
           <FadeIn delay={0.8}>
-            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pb-16">
+            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="bg-white p-8 rounded-2xl border border-neutral-300 text-center hover:shadow-xl transition-shadow shadow-lg">
                 <div className="text-5xl font-black bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent mb-2">24/7</div>
                 <div className="text-sm text-neutral-600 font-bold uppercase tracking-wider">Monitorización</div>
@@ -223,6 +223,18 @@ export default function ProtoHome() {
                 <div className="text-5xl font-black text-neutral-900 mb-2">∞</div>
                 <div className="text-sm text-neutral-600 font-bold uppercase tracking-wider">Integración</div>
               </div>
+            </div>
+          </FadeIn>
+
+          {/* Botón Explorar Tecnología */}
+          <FadeIn delay={1.0}>
+            <div className="mt-12 text-center pb-16">
+              <Link
+                to="/prototype/tecnologia"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-brand-start to-brand-end text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-brand-start/20"
+              >
+                Explorar tecnología <ArrowRight size={20} />
+              </Link>
             </div>
           </FadeIn>
         </div>
