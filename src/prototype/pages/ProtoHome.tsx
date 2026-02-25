@@ -101,72 +101,57 @@ export default function ProtoHome() {
         </div>
       </section>
 
-      {/* 1.5) EL SISTEMA - Núcleo Tecnológico REDISEÑADO */}
-      <section className="relative py-32 md:py-48 px-6 bg-black text-white overflow-hidden">
-        {/* Grid background tech */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `
-              linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px'
-          }} />
-        </div>
-
-        {/* Glowing orbs */}
-        <div className="absolute top-20 left-10 w-96 h-96 bg-brand-start/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-end/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
-
-        <div className="max-w-7xl mx-auto relative z-10">
+      {/* 1.5) EL SISTEMA - Núcleo Tecnológico */}
+      <section className="py-32 md:py-48 px-6 bg-white">
+        <div className="max-w-[1400px] mx-auto">
           <FadeIn className="text-center mb-20">
-            <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-brand-start/20 to-brand-end/20 backdrop-blur-sm rounded-full border border-brand-start/30 mb-8">
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-brand-start/10 to-brand-end/10 rounded-full border border-brand-start/20 mb-8">
               <div className="w-2 h-2 bg-brand-start rounded-full animate-pulse" />
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-brand-start">Sistema activo</span>
               <div className="w-2 h-2 bg-brand-end rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
             </div>
-            <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 bg-gradient-to-r from-white via-brand-start to-brand-end bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-6">
               {HOME_CONTENT.systemCore.title}
             </h2>
-            <p className="text-xl md:text-2xl text-neutral-400 max-w-3xl mx-auto font-light">
+            <p className="text-xl md:text-2xl text-neutral-600 max-w-3xl mx-auto">
               {HOME_CONTENT.systemCore.subtitle}
             </p>
           </FadeIn>
 
-          {/* Flow diagram style */}
-          <div className="relative max-w-6xl mx-auto mb-24">
+          {/* Flow diagram con líneas conectoras */}
+          <div className="relative mb-24">
             <div className="grid md:grid-cols-4 gap-6">
               {HOME_CONTENT.systemCore.steps.map((step, idx) => (
                 <FadeIn key={idx} delay={idx * 0.15}>
                   <div className="relative group">
-                    {/* Connection line */}
+                    {/* Línea conectora entre cards */}
                     {idx < HOME_CONTENT.systemCore.steps.length - 1 && (
-                      <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-brand-start to-brand-end z-0">
+                      <div className="hidden md:block absolute top-20 -right-3 w-6 h-0.5 bg-gradient-to-r from-brand-start to-brand-end z-0">
                         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-brand-end rounded-full animate-pulse" style={{ animationDelay: `${idx * 0.3}s` }} />
                       </div>
                     )}
 
-                    <div className="relative bg-gradient-to-br from-neutral-900 to-black p-8 rounded-3xl border border-white/10 hover:border-brand-start/50 transition-all min-h-[340px] flex flex-col group-hover:scale-105 duration-500">
-                      {/* Tech corner detail */}
-                      <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-brand-start/30 rounded-tl-3xl" />
-                      <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-brand-end/30 rounded-br-3xl" />
-
-                      {/* Step number */}
-                      <div className="absolute -top-4 -right-4 w-10 h-10 bg-gradient-to-br from-brand-start to-brand-end rounded-full flex items-center justify-center font-black text-lg shadow-lg shadow-brand-start/50">
+                    <div className="relative bg-white p-8 rounded-3xl border border-neutral-200 hover:border-brand-start/50 transition-all min-h-[340px] flex flex-col group-hover:shadow-2xl group-hover:shadow-brand-start/10 duration-500">
+                      {/* Número del paso */}
+                      <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-brand-start to-brand-end rounded-full flex items-center justify-center font-black text-lg text-white shadow-lg shadow-brand-start/30">
                         {idx + 1}
                       </div>
 
+                      {/* Decoración esquinas sutiles */}
+                      <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-brand-start/20 rounded-tl-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-brand-end/20 rounded-br-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+
                       <div className="relative z-10">
-                        <div className="w-20 h-20 bg-gradient-to-br from-brand-start to-brand-end rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-brand-start/50">
+                        <div className="w-20 h-20 bg-gradient-to-br from-brand-start to-brand-end rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-brand-start/20">
                           <step.icon size={36} strokeWidth={2} className="text-white" />
                         </div>
-                        <h3 className="text-2xl font-black mb-4 bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-transparent">
+                        <h3 className="text-2xl font-bold mb-4 tracking-tight">
                           {step.title}
                         </h3>
-                        <p className="text-neutral-500 leading-relaxed flex-1 text-sm">
+                        <p className="text-neutral-600 leading-relaxed flex-1">
                           {step.description}
                         </p>
-                        <div className="mt-6 h-1 bg-gradient-to-r from-brand-start to-brand-end rounded-full opacity-50 group-hover:opacity-100 transition-opacity" />
+                        <div className="mt-6 h-1 bg-gradient-to-r from-brand-start to-brand-end rounded-full w-12 group-hover:w-full transition-all duration-500" />
                       </div>
                     </div>
                   </div>
@@ -175,43 +160,43 @@ export default function ProtoHome() {
             </div>
           </div>
 
-          {/* Tech visual with data overlay */}
+          {/* Visual principal con overlays de datos */}
           <FadeIn delay={0.6}>
-            <div className="relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden border border-white/10">
+            <div className="relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden border border-neutral-200 shadow-2xl">
               <img
                 src={HOME_CONTENT.systemCore.image}
                 alt="Sistema Heartbeat"
-                className="w-full h-full object-cover opacity-40"
+                className="w-full h-full object-cover"
               />
 
-              {/* Tech overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+              {/* Overlay gradiente sutil */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-              {/* Floating data points */}
-              <div className="absolute top-10 left-10 bg-black/60 backdrop-blur-md px-6 py-4 rounded-2xl border border-brand-start/30 animate-pulse">
+              {/* Data cards flotantes */}
+              <div className="absolute top-10 left-10 bg-white/95 backdrop-blur-sm px-6 py-4 rounded-2xl border border-neutral-200 shadow-lg animate-pulse">
                 <div className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Frecuencia cardíaca</div>
-                <div className="text-3xl font-black text-brand-start">72 <span className="text-sm">BPM</span></div>
+                <div className="text-3xl font-black bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent">72 <span className="text-sm text-neutral-400">BPM</span></div>
               </div>
 
-              <div className="absolute top-10 right-10 bg-black/60 backdrop-blur-md px-6 py-4 rounded-2xl border border-brand-end/30 animate-pulse" style={{ animationDelay: '0.5s' }}>
+              <div className="absolute top-10 right-10 bg-white/95 backdrop-blur-sm px-6 py-4 rounded-2xl border border-neutral-200 shadow-lg animate-pulse" style={{ animationDelay: '0.5s' }}>
                 <div className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Recuperación</div>
-                <div className="text-3xl font-black text-brand-end">87<span className="text-sm">%</span></div>
+                <div className="text-3xl font-black bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent">87<span className="text-sm text-neutral-400">%</span></div>
               </div>
 
-              <div className="absolute bottom-32 left-10 bg-black/60 backdrop-blur-md px-6 py-4 rounded-2xl border border-green-500/30 animate-pulse" style={{ animationDelay: '1s' }}>
+              <div className="absolute bottom-32 left-10 bg-white/95 backdrop-blur-sm px-6 py-4 rounded-2xl border border-neutral-200 shadow-lg animate-pulse" style={{ animationDelay: '1s' }}>
                 <div className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Calidad sueño</div>
-                <div className="text-3xl font-black text-green-500">92<span className="text-sm">%</span></div>
+                <div className="text-3xl font-black text-green-600">92<span className="text-sm text-neutral-400">%</span></div>
               </div>
 
-              <div className="absolute bottom-32 right-10 bg-black/60 backdrop-blur-md px-6 py-4 rounded-2xl border border-purple-500/30 animate-pulse" style={{ animationDelay: '1.5s' }}>
+              <div className="absolute bottom-32 right-10 bg-white/95 backdrop-blur-sm px-6 py-4 rounded-2xl border border-neutral-200 shadow-lg animate-pulse" style={{ animationDelay: '1.5s' }}>
                 <div className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Estado actual</div>
-                <div className="text-2xl font-black text-purple-500">Óptimo</div>
+                <div className="text-2xl font-black text-neutral-900">Óptimo</div>
               </div>
 
-              {/* Central message */}
+              {/* Mensaje central */}
               <div className="absolute bottom-0 left-0 right-0 p-10 text-center">
-                <div className="bg-black/80 backdrop-blur-md px-10 py-6 rounded-2xl border border-white/10 inline-block">
-                  <p className="text-xl md:text-3xl font-black">
+                <div className="bg-white/95 backdrop-blur-sm px-10 py-6 rounded-2xl border border-neutral-200 inline-block shadow-xl">
+                  <p className="text-xl md:text-3xl font-bold text-neutral-900">
                     Todo tiene un propósito: <span className="bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent">Dormir mejor para vivir mejor</span>
                   </p>
                 </div>
@@ -219,24 +204,24 @@ export default function ProtoHome() {
             </div>
           </FadeIn>
 
-          {/* Tech stats bar */}
+          {/* Barra de estadísticas tech */}
           <FadeIn delay={0.8}>
             <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="bg-gradient-to-br from-neutral-900 to-black p-6 rounded-2xl border border-white/10 text-center">
-                <div className="text-4xl font-black text-brand-start mb-2">24/7</div>
-                <div className="text-sm text-neutral-500 uppercase tracking-wider">Monitorización</div>
+              <div className="bg-gradient-to-br from-neutral-50 to-white p-8 rounded-2xl border border-neutral-200 text-center hover:shadow-xl transition-shadow">
+                <div className="text-5xl font-black bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent mb-2">24/7</div>
+                <div className="text-sm text-neutral-600 font-bold uppercase tracking-wider">Monitorización</div>
               </div>
-              <div className="bg-gradient-to-br from-neutral-900 to-black p-6 rounded-2xl border border-white/10 text-center">
-                <div className="text-4xl font-black text-brand-end mb-2">Real-time</div>
-                <div className="text-sm text-neutral-500 uppercase tracking-wider">Adaptación</div>
+              <div className="bg-gradient-to-br from-neutral-50 to-white p-8 rounded-2xl border border-neutral-200 text-center hover:shadow-xl transition-shadow">
+                <div className="text-4xl font-black bg-gradient-to-r from-brand-start to-brand-end bg-clip-text text-transparent mb-2">Real-time</div>
+                <div className="text-sm text-neutral-600 font-bold uppercase tracking-wider">Adaptación</div>
               </div>
-              <div className="bg-gradient-to-br from-neutral-900 to-black p-6 rounded-2xl border border-white/10 text-center">
-                <div className="text-4xl font-black text-green-500 mb-2">100%</div>
-                <div className="text-sm text-neutral-500 uppercase tracking-wider">Automatizado</div>
+              <div className="bg-gradient-to-br from-neutral-50 to-white p-8 rounded-2xl border border-neutral-200 text-center hover:shadow-xl transition-shadow">
+                <div className="text-5xl font-black text-green-600 mb-2">100%</div>
+                <div className="text-sm text-neutral-600 font-bold uppercase tracking-wider">Automatizado</div>
               </div>
-              <div className="bg-gradient-to-br from-neutral-900 to-black p-6 rounded-2xl border border-white/10 text-center">
-                <div className="text-4xl font-black text-purple-500 mb-2">∞</div>
-                <div className="text-sm text-neutral-500 uppercase tracking-wider">Integración</div>
+              <div className="bg-gradient-to-br from-neutral-50 to-white p-8 rounded-2xl border border-neutral-200 text-center hover:shadow-xl transition-shadow">
+                <div className="text-5xl font-black text-neutral-900 mb-2">∞</div>
+                <div className="text-sm text-neutral-600 font-bold uppercase tracking-wider">Integración</div>
               </div>
             </div>
           </FadeIn>
